@@ -250,8 +250,8 @@ export function HeroSection({ activeTab, onTabChange }: HeroSectionProps) {
         </div>
       </div>
 
-      {/* video en móvil */}
-      <div className="flex justify-center mt-2 mb-4 lg:hidden pointer-events-none select-none">
+      {/* video en móvil — oculto porque el blend mode no se ve bien en pantallas pequeñas */}
+      <div className="hidden">
         {videoOk ? (
           <video
             ref={videoRef}
