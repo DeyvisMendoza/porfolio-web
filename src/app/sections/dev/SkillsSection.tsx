@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import imgAvatarCalidad1 from "../../../imports/Frame2/6a7be3c1798d76f5debe0730320cc95b363d573d.png";
+import imgAvatarCalidad1 from "../../../assets/avatar_cafe.png";
 
 const skillGroups = [
   {
@@ -7,16 +7,16 @@ const skillGroups = [
     items: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Vite", "React Native"],
   },
   {
-    title: "Estilos",
-    items: ["CSS", "SASS", "PostCSS", "Figma", "Diseño responsivo"],
+    title: "Maquetación",
+    items: ["HTML", "CSS", "SASS", "Diseño responsivo", "Accesibilidad"],
   },
   {
-    title: "Back-end",
-    items: ["Node.js", "Supabase", "PostgreSQL", "REST APIs", "Auth"],
+    title: "UX y prototipos",
+    items: ["Figma", "Wireframes", "Prototipado", "Componentes", "Design tokens"],
   },
   {
-    title: "DevOps",
-    items: ["Git", "GitHub", "Vercel", "CI/CD", "Docker"],
+    title: "APIs & herramientas",
+    items: ["REST APIs", "Git", "GitHub", "Vercel", "Supabase"],
   },
 ];
 
@@ -50,9 +50,7 @@ export function SkillsSection() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              ¡Hola! Soy Deyvis, y soy un{" "}
-              <em className="text-white not-italic">desarrollador full-stack</em>. Más de{" "}
-              <em className="text-white not-italic">5 años</em> de experiencia construyendo productos digitales.
+              ¡Hola! Soy Deyvis, desarrollador <em className="text-white not-italic">front-end junior</em>. Construyo interfaces web claras y accesibles con React, TypeScript y Tailwind.
             </motion.p>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -97,7 +95,7 @@ export function SkillsSection() {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.5, delay: 0.7 }}
             >
-              Algunas de las tecnologías, temas o herramientas que más me entusiasman y con las que he trabajado.
+              Estas son las herramientas y habilidades que uso para crear interfaces rápidas, accesibles y fáciles de mantener.
             </motion.p>
           </div>
 

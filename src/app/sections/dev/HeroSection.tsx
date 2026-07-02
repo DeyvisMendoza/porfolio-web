@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useMode } from "../../context/ModeContext";
 import { CONTACT } from "../../../shared/constants/contact";
-import imgAvatarCalidad1 from "../../../imports/Frame2/6a7be3c1798d76f5debe0730320cc95b363d573d.png";
+import imgAvatarCalidad1 from "../../../assets/avatar_sentado.png";
 
 const navItems = [
   { label: "Sobre mí", href: "#about" },
@@ -34,7 +34,8 @@ export function HeroSection() {
       <motion.div
         className="absolute inset-0 pointer-events-none"
         style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
           backgroundSize: "48px 48px",
           opacity: 0.04,
         }}
@@ -50,7 +51,10 @@ export function HeroSection() {
           <div className="flex flex-col leading-none">
             <motion.span
               className="text-[15px] sm:text-[17px] text-white/90"
-              style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}
+              style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontWeight: 600,
+              }}
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.5 }}
@@ -60,7 +64,10 @@ export function HeroSection() {
             </motion.span>
             <motion.span
               className="text-[15px] sm:text-[17px] text-white/90"
-              style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}
+              style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontWeight: 600,
+              }}
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.5 }}
@@ -93,7 +100,12 @@ export function HeroSection() {
               initial={{ opacity: 0, y: -20, scale: 0.9 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.3 }}
-              transition={{ type: "spring", stiffness: 160, damping: 16, delay: 0.15 }}
+              transition={{
+                type: "spring",
+                stiffness: 160,
+                damping: 16,
+                delay: 0.15,
+              }}
             >
               <span
                 className="absolute top-0 bottom-0 w-1/2 bg-white transition-all duration-300 ease-out rounded-full"
@@ -103,10 +115,20 @@ export function HeroSection() {
                 <button
                   key={tab.value}
                   onClick={() => setMode(tab.value)}
-                  className="relative px-4 sm:px-5 py-[6px] text-[12px] font-medium transition-colors"
+                  className="
+                      relative
+                      flex items-center justify-center
+                      w-1/2
+                      px-6
+                      py-3
+                      text-xs
+                      font-medium
+                      transition-colors
+  "
                   style={{
                     fontFamily: "'IBM Plex Mono', monospace",
-                    color: mode === tab.value ? "#0a0a0a" : "rgba(255,255,255,0.6)",
+                    color:
+                      mode === tab.value ? "#0a0a0a" : "rgba(255,255,255,0.6)",
                   }}
                 >
                   {tab.label}
@@ -131,7 +153,10 @@ export function HeroSection() {
           <div className="max-w-[620px] pr-0 lg:pr-10 xl:pr-14">
             <h1
               className="text-[40px] sm:text-[72px] lg:text-[90px] leading-[0.95] mb-6 sm:mb-8"
-              style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700 }}
+              style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontWeight: 700,
+              }}
             >
               <motion.span
                 className="inline-block"
@@ -150,7 +175,7 @@ export function HeroSection() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: 0.32 }}
               >
-                Full-stack
+                Front-end Junior
               </motion.span>
             </h1>
 
@@ -162,9 +187,11 @@ export function HeroSection() {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.45 }}
             >
-              Mi objetivo es escribir código <em className="text-white not-italic">mantenible</em>,{" "}
-              <em className="text-white not-italic">limpio</em> y{" "}
-              <em className="text-white not-italic">comprensible</em> para que el proceso de desarrollo sea agradable.
+              Me enfoco en crear interfaces web con{" "}
+              <em className="text-white not-italic">React</em>,{" "}
+              <em className="text-white not-italic">TypeScript</em> y CSS.
+              Construyo componentes responsivos y accesibles, cuidando que cada
+              interacción se sienta fluida.
             </motion.p>
 
             <div className="flex flex-wrap gap-3">
@@ -175,38 +202,60 @@ export function HeroSection() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/[0.03] text-white/70 hover:bg-white hover:text-[#0a0a0a] transition-all text-[12px]"
-                  style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}
+                  style={{
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontWeight: 500,
+                  }}
                   initial={
                     s.label === "GitHub"
                       ? { opacity: 0, x: -30, y: 20 }
                       : s.label === "LinkedIn"
-                      ? { opacity: 0, y: 30, scale: 0.9 }
-                      : s.label === "Telegram"
-                      ? { opacity: 0, x: 30, y: 20 }
-                      : { opacity: 0, x: -20, y: 30, rotate: -2 }
+                        ? { opacity: 0, y: 30, scale: 0.9 }
+                        : s.label === "Telegram"
+                          ? { opacity: 0, x: 30, y: 20 }
+                          : { opacity: 0, x: -20, y: 30, rotate: -2 }
                   }
-                whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, rotate: 0 }}
-                viewport={{ once: true, amount: 0.5 }}
-                transition={{ duration: 0.5, delay: 0.55 + i * 0.08 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0, scale: 1, rotate: 0 }}
+                  viewport={{ once: true, amount: 0.5 }}
+                  transition={{ duration: 0.5, delay: 0.55 + i * 0.08 }}
                 >
                   {s.label === "GitHub" && (
-                    <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="w-4 h-4"
+                      fill="currentColor"
+                    >
                       <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
                     </svg>
                   )}
                   {s.label === "LinkedIn" && (
-                    <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="w-4 h-4"
+                      fill="currentColor"
+                    >
                       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
                       <circle cx="4" cy="4" r="2" />
                     </svg>
                   )}
                   {s.label === "Telegram" && (
-                    <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="w-4 h-4"
+                      fill="currentColor"
+                    >
                       <path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-16.5 6.498a2.25 2.25 0 0 0 .095 4.236l3.85 1.18 1.66 5.508a1.5 1.5 0 0 0 2.8.35l2.27-4.3 4.48 3.2a2.25 2.25 0 0 0 3.55-1.7L23.14 4.25a2.25 2.25 0 0 0-1.942-2.817Z" />
                     </svg>
                   )}
                   {s.label === "Email" && (
-                    <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    >
                       <rect x="2" y="4" width="20" height="16" rx="2" />
                       <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                     </svg>
