@@ -3,8 +3,15 @@ import { motion } from "framer-motion";
 import imgTadiclick from "../../../assets/tadiclick.svg";
 import imgVast from "../../../assets/vast.svg";
 import imgDymm from "../../../assets/dymm.svg";
+import imgHysionWeb from "../../../assets/hysion-web.svg";
+import imgKypacApp from "../../../assets/kypac-app.svg";
+import imgFoodiegoApp from "../../../assets/foodiego-app.svg";
+import imgStudioNineWeb from "../../../assets/studionine-web.svg";
+import imgAgrotrackWeb from "../../../assets/agrotrack-web.svg";
 import imgFigmaBarra from "../../../assets/figmabarra.svg";
 import { HiddenNote } from "../../../components/HiddenNote";
+import { DesignCaseStudyModal } from "../../../components/DesignCaseStudyModal";
+import { ProjectCarousel } from "../../../components/ProjectCarousel";
 
 const projects = [
   {
@@ -33,6 +40,51 @@ const projects = [
     role: "UI/UX + Fullstack",
     text: "Plataforma de autenticacion unificada con login social, verificacion de correo y recuperacion de contrasena. Trabaje en la experiencia de registro, el panel de administracion y la integracion con APIs de terceros.",
     tags: ["Next.js", "Supabase", "Figma", "OAuth"],
+  },
+  {
+    id: "hysion-web",
+    img: imgHysionWeb,
+    title: "Hysion Web",
+    subtitle: "Sitio web y landing page de agencia",
+    role: "Diseno UI/UX + Frontend",
+    text: "Landing page de agencia con portfolio, servicios y formulario de contacto. Disené el layout responsivo, la identidad visual y colabore en el desarrollo frontend con animaciones de scroll.",
+    tags: ["Figma", "React", "Tailwind CSS", "Framer Motion"],
+  },
+  {
+    id: "kypac-app",
+    img: imgKypacApp,
+    title: "Kypac",
+    subtitle: "E-commerce y pagos digitales",
+    role: "Diseño UI/UX + Frontend",
+    text: "App móvil de e-commerce con pasarela de pagos integrada, carrito de compras y seguimiento de pedidos en tiempo real. Diseñé el flujo completo de compra y el checkout.",
+    tags: ["Figma", "React", "Stripe", "Supabase"],
+  },
+  {
+    id: "foodiego-app",
+    img: imgFoodiegoApp,
+    title: "FoodieGo",
+    subtitle: "Delivery de comida a domicilio",
+    role: "UI/UX Designer",
+    text: "App de delivery con geolocalización, menús dinámicos y sistema de reseñas. Diseñé la experiencia de pedido, seguimiento del repartidor y calificación.",
+    tags: ["Figma", "Prototipado", "Google Maps API", "UX Research"],
+  },
+  {
+    id: "studionine-web",
+    img: imgStudioNineWeb,
+    title: "StudioNine",
+    subtitle: "Portfolio de estudio creativo",
+    role: "Diseño UI/UX + Frontend",
+    text: "Sitio web de estudio creativo con portfolio interactivo, servicios y blog. Diseñé el layout con animaciones de scroll y un sistema de casos de estudio visuales.",
+    tags: ["Figma", "React", "Tailwind CSS", "Framer Motion"],
+  },
+  {
+    id: "agrotrack-web",
+    img: imgAgrotrackWeb,
+    title: "AgroTrack",
+    subtitle: "Plataforma de monitoreo agrícola",
+    role: "Product Designer",
+    text: "Dashboard web para monitoreo de cultivos con sensores IoT, mapas interactivos y reportes de productividad. Diseñé el sistema de visualización de datos.",
+    tags: ["Figma", "Design System", "Data Viz", "UX Research"],
   },
 ];
 
@@ -65,11 +117,13 @@ function FlipCard({
   flipped,
   selected,
   onFlip,
+  onReadMore,
 }: {
   project: (typeof projects)[number];
   flipped: boolean;
   selected: boolean;
   onFlip: () => void;
+  onReadMore: () => void;
 }) {
   return (
     <div
@@ -100,8 +154,8 @@ function FlipCard({
             {project.id}
           </span>
           <div
-            className="overflow-hidden rounded-[32px] border-[4px] border-[#111] bg-[#0f0f0f] transition-transform duration-300 hover:scale-[1.04] hover:-translate-y-2"
-            style={{ filter: "drop-shadow(0 32px 64px rgba(0,0,0,0.5))" }}
+            className="overflow-hidden rounded-[32px] border-[4px] border-[#111] bg-transparent transition-transform duration-300 hover:scale-[1.04] hover:-translate-y-2"
+            style={{ filter: "drop-shadow(0 32px 64px rgba(0,0,0,0.12))" }}
           >
             <img
               src={project.img}
@@ -172,8 +226,12 @@ function FlipCard({
             ))}
           </div>
           <div className="mt-4">
-            <a
-              href={`#design-${project.id}`}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                onReadMore();
+              }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#0a0a0a] text-[12px] hover:bg-white/90 transition-colors"
             >
               Leer más
@@ -187,7 +245,7 @@ function FlipCard({
               >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </a>
+            </button>
           </div>
         </div>
       </div>
@@ -202,6 +260,7 @@ export function ProjectsSection() {
     start: { x: number; y: number };
     end: { x: number; y: number };
   } | null>(null);
+  const [openCaseStudy, setOpenCaseStudy] = useState<string | null>(null);
   const dragRef = useRef({ isDragging: false, startX: 0, startY: 0 });
 
   const handleMouseDown = (e: React.MouseEvent<HTMLElement>) => {
@@ -372,23 +431,27 @@ export function ProjectsSection() {
           </motion.div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-14 md:gap-8 lg:gap-16">
+        <ProjectCarousel
+          theme="design"
+          maxWidth="max-w-[1280px]"
+          itemWidth="w-[260px] sm:w-[280px]"
+        >
           {projects.map((p, i) => (
             <motion.div
               key={p.id}
               initial={
-                i === 0
+                i % 3 === 0
                   ? { opacity: 0, x: -80, rotate: -6, scale: 0.95 }
-                  : i === 1
+                  : i % 3 === 1
                     ? { opacity: 0, y: 60, scale: 0.8, rotate: 0, x: 0 }
                     : { opacity: 0, x: 80, rotate: 6, scale: 0.95 }
               }
               whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={
-                i === 1
-                  ? { type: "spring", stiffness: 160, damping: 14, delay: 0.45 }
-                  : { duration: 0.7, delay: 0.35 + i * 0.1, ease: "easeOut" }
+                i % 3 === 1
+                  ? { type: "spring", stiffness: 160, damping: 14, delay: 0.25 }
+                  : { duration: 0.7, delay: 0.25 + i * 0.1, ease: "easeOut" }
               }
             >
               <FlipCard
@@ -396,10 +459,11 @@ export function ProjectsSection() {
                 flipped={flippedIds.includes(p.id)}
                 selected={selectedIds.includes(p.id)}
                 onFlip={() => handleCardClick(p.id)}
+                onReadMore={() => setOpenCaseStudy(p.id)}
               />
             </motion.div>
           ))}
-        </div>
+        </ProjectCarousel>
 
         <motion.div
           className="flex flex-wrap justify-center gap-6 mt-10"
@@ -430,15 +494,11 @@ export function ProjectsSection() {
           Click en un proyecto para voltearlo · Arrastra para seleccionar como
           en Figma
         </motion.p>
-        {/* Design case study anchors (inline minimal detail sections) */}
-        {projects.map((p) => (
-          <div id={`design-${p.id}`} key={p.id} className="mt-8">
-            <div className="w-full max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-8 border-t border-white/6">
-              <h3 className="text-xl text-white font-semibold">{p.title}</h3>
-              <p className="text-white/60 mt-2">{p.text}</p>
-            </div>
-          </div>
-        ))}
+        <DesignCaseStudyModal
+          isOpen={!!openCaseStudy}
+          onClose={() => setOpenCaseStudy(null)}
+          projectId={openCaseStudy || ""}
+        />
       </div>
     </motion.section>
   );
