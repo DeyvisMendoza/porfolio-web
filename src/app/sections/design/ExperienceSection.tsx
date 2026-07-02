@@ -5,7 +5,7 @@ import { HiddenNote } from "../../../components/HiddenNote";
 export function ExperienceSection() {
   return (
     <motion.section
-      className="relative w-full bg-white overflow-hidden pt-40 pb-24"
+      className="relative z-40 w-full bg-white overflow-hidden pt-40 pb-24"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}

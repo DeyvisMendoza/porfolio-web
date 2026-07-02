@@ -40,7 +40,7 @@ export function HeroSection() {
 
   return (
     <motion.section
-      className="relative w-full bg-[#016634] min-h-[900px] lg:min-h-[850px] overflow-hidden"
+      className="relative z-50 w-full bg-[#016634] min-h-[900px] lg:min-h-[850px] overflow-visible"
       onMouseMove={handleMouseMove}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

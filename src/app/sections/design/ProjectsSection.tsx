@@ -214,7 +214,7 @@ export function ProjectsSection() {
 
   return (
     <motion.section
-      className="relative w-full bg-[#1e1e1e] overflow-hidden py-16 sm:py-20 select-none"
+      className="relative z-20 w-full bg-[#1e1e1e] overflow-hidden py-16 sm:py-20 select-none"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}

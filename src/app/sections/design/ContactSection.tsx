@@ -70,7 +70,7 @@ function CopyChip({
 export function ContactSection() {
   return (
     <motion.section
-      className="relative w-full bg-[#016634] overflow-hidden py-24"
+      className="relative z-10 w-full bg-[#016634] overflow-hidden py-24"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}

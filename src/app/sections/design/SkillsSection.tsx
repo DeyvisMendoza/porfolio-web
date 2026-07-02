@@ -50,7 +50,7 @@ function Sticker({
 export function SkillsSection() {
   return (
     <motion.section
-      className="relative w-full bg-white overflow-hidden py-20"
+      className="relative z-30 w-full bg-white overflow-hidden py-20"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
