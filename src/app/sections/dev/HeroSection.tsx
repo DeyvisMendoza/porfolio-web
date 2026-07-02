@@ -3,12 +3,21 @@ import { useMode } from "../../context/ModeContext";
 import { CONTACT } from "../../../shared/constants/contact";
 import imgAvatarCalidad1 from "../../../imports/Frame2/6a7be3c1798d76f5debe0730320cc95b363d573d.png";
 
-const navItems = ["About", "Projects", "Articles", "Contacts"];
+const navItems = [
+  { label: "Sobre mí", href: "#about" },
+  { label: "Proyectos", href: "#projects" },
+  { label: "Experiencia", href: "#work" },
+  { label: "Contacto", href: "#contacts" },
+];
 const socials = [
   { label: "GitHub", href: "https://" + CONTACT.github },
   { label: "LinkedIn", href: "https://" + CONTACT.linkedin },
   { label: "Telegram", href: "#" },
-  { label: "Email", href: "mailto:" + CONTACT.email },
+  { label: "Correo", href: "mailto:" + CONTACT.email },
+];
+const tabs = [
+  { value: "design" as const, label: "Diseño" },
+  { value: "dev" as const, label: "Desarrollo" },
 ];
 
 export function HeroSection() {
@@ -19,7 +28,7 @@ export function HeroSection() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="relative w-full bg-[#0a0a0a] min-h-screen overflow-hidden text-white"
+      className="relative w-full bg-[#0a0a0a] overflow-hidden text-white"
     >
       {/* sutil grid */}
       <motion.div
@@ -35,9 +44,9 @@ export function HeroSection() {
         transition={{ duration: 0.8 }}
       />
 
-      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 sm:px-10 pt-8 pb-20">
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10 pt-6 sm:pt-8 pb-12 sm:pb-16">
         {/* HEADER */}
-        <header className="flex items-center justify-between mb-24">
+        <header className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-16 sm:mb-24">
           <div className="flex flex-col leading-none">
             <motion.span
               className="text-[15px] sm:text-[17px] text-white/90"
@@ -64,8 +73,8 @@ export function HeroSection() {
           <nav className="hidden md:flex items-center gap-8">
             {navItems.map((item, i) => (
               <motion.a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                key={item.label}
+                href={item.href}
                 className="text-[13px] text-white/60 hover:text-white transition-colors"
                 style={{ fontFamily: "'IBM Plex Mono', monospace" }}
                 initial={{ opacity: 0, y: -12, rotate: -2 }}
@@ -73,12 +82,12 @@ export function HeroSection() {
                 viewport={{ once: true, amount: 0.5 }}
                 transition={{ duration: 0.4, delay: 0.2 + i * 0.06 }}
               >
-                {item}
+                {item.label}
               </motion.a>
             ))}
           </nav>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <motion.div
               className="relative flex overflow-hidden rounded-full border border-white/15 bg-white/5"
               initial={{ opacity: 0, y: -20, scale: 0.9 }}
@@ -90,17 +99,17 @@ export function HeroSection() {
                 className="absolute top-0 bottom-0 w-1/2 bg-white transition-all duration-300 ease-out rounded-full"
                 style={{ left: mode === "design" ? "0%" : "50%" }}
               />
-              {(["design", "dev"] as const).map((tab) => (
+              {tabs.map((tab) => (
                 <button
-                  key={tab}
-                  onClick={() => setMode(tab)}
-                  className="relative px-4 sm:px-5 py-[6px] text-[12px] font-medium transition-colors capitalize"
+                  key={tab.value}
+                  onClick={() => setMode(tab.value)}
+                  className="relative px-4 sm:px-5 py-[6px] text-[12px] font-medium transition-colors"
                   style={{
                     fontFamily: "'IBM Plex Mono', monospace",
-                    color: mode === tab ? "#0a0a0a" : "rgba(255,255,255,0.6)",
+                    color: mode === tab.value ? "#0a0a0a" : "rgba(255,255,255,0.6)",
                   }}
                 >
-                  {tab}
+                  {tab.label}
                 </button>
               ))}
             </motion.div>
@@ -118,10 +127,10 @@ export function HeroSection() {
         </header>
 
         {/* HERO CONTENT */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_360px] gap-16 xl:gap-20 items-start">
+          <div className="max-w-[620px] pr-0 lg:pr-10 xl:pr-14">
             <h1
-              className="text-[48px] sm:text-[72px] lg:text-[90px] leading-[0.95] mb-8"
+              className="text-[40px] sm:text-[72px] lg:text-[90px] leading-[0.95] mb-6 sm:mb-8"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700 }}
             >
               <motion.span
@@ -131,7 +140,7 @@ export function HeroSection() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Full-stack
+                Desarrollador
               </motion.span>
               <br />
               <motion.span
@@ -141,21 +150,21 @@ export function HeroSection() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={{ duration: 0.6, delay: 0.32 }}
               >
-                Developer
+                Full-stack
               </motion.span>
             </h1>
 
             <motion.p
-              className="text-white/60 text-[15px] sm:text-[17px] max-w-[420px] leading-relaxed mb-10"
+              className="text-white/60 text-[15px] sm:text-[17px] max-w-[420px] leading-relaxed mb-8 sm:mb-10"
               style={{ fontFamily: "'Inter', sans-serif" }}
               initial={{ opacity: 0, y: 30, x: 20 }}
               whileInView={{ opacity: 1, y: 0, x: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.45 }}
             >
-              My goal is to write <em className="text-white not-italic">maintainable</em>,{" "}
-              <em className="text-white not-italic">clean</em> and{" "}
-              <em className="text-white not-italic">understandable</em> code so the development process is enjoyable.
+              Mi objetivo es escribir código <em className="text-white not-italic">mantenible</em>,{" "}
+              <em className="text-white not-italic">limpio</em> y{" "}
+              <em className="text-white not-italic">comprensible</em> para que el proceso de desarrollo sea agradable.
             </motion.p>
 
             <div className="flex flex-wrap gap-3">
@@ -216,6 +225,23 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.35, ease: "easeOut" }}
           >
             <div className="relative w-[320px] h-[420px] rounded-[32px] overflow-hidden border border-white/10 bg-white/[0.03]">
+              <img
+                src={imgAvatarCalidad1}
+                alt="Deyvis Mendoza"
+                className="w-full h-full object-cover grayscale opacity-90"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/80 via-transparent to-transparent" />
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="flex justify-center lg:hidden mt-4"
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          >
+            <div className="relative w-full max-w-[280px] h-[320px] rounded-[24px] overflow-hidden border border-white/10 bg-white/[0.03]">
               <img
                 src={imgAvatarCalidad1}
                 alt="Deyvis Mendoza"

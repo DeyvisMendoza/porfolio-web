@@ -8,8 +8,8 @@ export function Footer() {
   const { isDev } = useMode();
 
   return (
-    <footer className={`relative w-full overflow-hidden pt-16 pb-10 transition-colors duration-500 ${isDev ? "bg-[#0d1117]" : "bg-black"}`}>
-      <div className={`absolute top-0 left-0 w-full h-[3px] opacity-30 ${isDev ? "bg-[#00ff41]" : "bg-[#fee95a]"}`} />
+    <footer className={`relative w-full overflow-hidden border-t border-white/10 pt-16 pb-10 transition-colors duration-500 ${isDev ? "bg-[#060606]" : "bg-black"}`}>
+      <div className={`absolute top-0 left-0 w-full h-[2px] ${isDev ? "bg-[#00ff41]/90" : "bg-[#fee95a]"}`} />
 
       <div className="relative z-10 w-full max-w-[1280px] mx-auto px-5 sm:px-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-14">

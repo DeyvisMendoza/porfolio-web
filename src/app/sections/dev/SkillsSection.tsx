@@ -7,8 +7,8 @@ const skillGroups = [
     items: ["TypeScript", "React", "Next.js", "Tailwind CSS", "Vite", "React Native"],
   },
   {
-    title: "Styles",
-    items: ["CSS", "SASS", "PostCSS", "Figma", "Responsive Design"],
+    title: "Estilos",
+    items: ["CSS", "SASS", "PostCSS", "Figma", "Diseño responsivo"],
   },
   {
     title: "Back-end",
@@ -27,10 +27,10 @@ export function SkillsSection() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
       id="about"
-      className="relative w-full bg-[#0a0a0a] overflow-hidden py-24"
+      className="relative w-full bg-[#0a0a0a] overflow-hidden py-20 sm:py-24"
     >
-      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 sm:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-center">
           <div>
             <motion.p
               className="text-white/40 text-[13px] mb-4"
@@ -40,22 +40,22 @@ export function SkillsSection() {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.5 }}
             >
-              .../About me ...
+              .../Sobre mí ...
             </motion.p>
             <motion.p
-              className="text-white/70 text-[17px] sm:text-[19px] leading-relaxed max-w-[480px] mb-12"
+              className="text-white/70 text-[17px] sm:text-[19px] leading-relaxed max-w-[480px] mb-8 sm:mb-12"
               style={{ fontFamily: "'Inter', sans-serif" }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Hello! I&apos;m Deyvis, I&apos;m a{" "}
-              <em className="text-white not-italic">full-stack developer</em>. More than{" "}
-              <em className="text-white not-italic">5 years</em> of experience building digital products.
+              ¡Hola! Soy Deyvis, y soy un{" "}
+              <em className="text-white not-italic">desarrollador full-stack</em>. Más de{" "}
+              <em className="text-white not-italic">5 años</em> de experiencia construyendo productos digitales.
             </motion.p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {skillGroups.map((group, i) => (
                 <motion.div
                   key={group.title}
@@ -90,14 +90,14 @@ export function SkillsSection() {
             </div>
 
             <motion.p
-              className="text-white/30 text-[11px] mt-6 max-w-[260px]"
+              className="text-white/30 text-[11px] mt-6 max-w-none sm:max-w-[260px]"
               style={{ fontFamily: "'IBM Plex Mono', monospace" }}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.5, delay: 0.7 }}
             >
-              Some of my favorite technologies, topics, or tools that I worked with.
+              Algunas de las tecnologías, temas o herramientas que más me entusiasman y con las que he trabajado.
             </motion.p>
           </div>
 
@@ -109,6 +109,23 @@ export function SkillsSection() {
             transition={{ duration: 0.8, delay: 0.25, ease: "easeOut" }}
           >
             <div className="relative w-[360px] h-[480px] rounded-[32px] overflow-hidden border border-white/10 bg-white/[0.03]">
+              <img
+                src={imgAvatarCalidad1}
+                alt="Deyvis Mendoza"
+                className="w-full h-full object-cover grayscale opacity-90"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a]/60 via-transparent to-transparent" />
+            </div>
+          </motion.div>
+
+          <motion.div
+            className="flex justify-center lg:hidden mt-2"
+            initial={{ opacity: 0, y: 20, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          >
+            <div className="relative w-full max-w-[260px] h-[320px] rounded-[24px] overflow-hidden border border-white/10 bg-white/[0.03]">
               <img
                 src={imgAvatarCalidad1}
                 alt="Deyvis Mendoza"

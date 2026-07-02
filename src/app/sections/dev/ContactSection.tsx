@@ -15,10 +15,10 @@ export function ContactSection() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
       id="contacts"
-      className="relative w-full bg-[#0a0a0a] overflow-hidden py-24"
+      className="relative w-full bg-[#0a0a0a] overflow-hidden py-20 sm:py-24"
     >
-      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 sm:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-16 items-center">
           <div>
             <motion.p
               className="text-white/40 text-[13px] mb-4"
@@ -28,31 +28,31 @@ export function ContactSection() {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.5 }}
             >
-              .../Contacts ...
+              .../Contacto ...
             </motion.p>
             <motion.h2
-              className="text-[40px] sm:text-[56px] leading-none text-white mb-6"
+              className="text-[34px] sm:text-[56px] leading-none text-white mb-4 sm:mb-6"
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700 }}
               initial={{ opacity: 0, y: 30, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              Let&apos;s work<br />together
+              Trabajemos<br />juntos
             </motion.h2>
             <motion.p
-              className="text-white/50 text-[16px] max-w-[420px] leading-relaxed"
+              className="text-white/50 text-[15px] sm:text-[16px] max-w-full sm:max-w-[420px] leading-relaxed"
               style={{ fontFamily: "'Inter', sans-serif" }}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              I&apos;m open to freelance projects, full-time roles and collaborations. Drop me a message and let&apos;s build something great.
+              Estoy abierto a proyectos freelance, puestos de tiempo completo y colaboraciones. Envíame un mensaje y construyamos algo grande.
             </motion.p>
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-3 sm:gap-4">
             {links.map((link, i) => (
               <motion.a
                 key={link.label}

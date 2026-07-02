@@ -7,20 +7,20 @@ const projects = [
   {
     id: "tadiclick",
     img: imgTadiclick,
-    title: "Tadiclick — Loans & Finance App",
-    desc: "A complete mobile application for managing personal loans, payments, disbursement history and reminders. Built with React and Supabase.",
+    title: "Tadiclick — App de préstamos y finanzas",
+    desc: "Una aplicación móvil completa para gestionar préstamos personales, pagos, historial de desembolsos y recordatorios. Construida con React y Supabase.",
   },
   {
     id: "vast",
     img: imgVast,
-    title: "VAST — Technical Services Platform",
-    desc: "A SaaS for companies to request corrective and preventive maintenance. Tickets, technician assignments and metrics dashboard.",
+    title: "VAST — Plataforma de servicios técnicos",
+    desc: "Un SaaS para que las empresas soliciten mantenimiento correctivo y preventivo. Tickets, asignación de técnicos y panel de métricas.",
   },
   {
     id: "dymm",
     img: imgDymm,
-    title: "Dymm — Cross-platform Auth System",
-    desc: "Unified authentication platform with social login, email verification and password recovery. Next.js + Supabase + OAuth.",
+    title: "Dymm — Sistema de autenticación multiplataforma",
+    desc: "Plataforma unificada de autenticación con inicio de sesión social, verificación por correo y recuperación de contraseña. Next.js + Supabase + OAuth.",
   },
 ];
 
@@ -31,10 +31,10 @@ export function ProjectsSection() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
       id="projects"
-      className="relative w-full bg-[#0a0a0a] overflow-hidden py-24"
+      className="relative w-full bg-[#0a0a0a] overflow-hidden py-20 sm:py-24"
     >
-      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 sm:px-10">
-        <div className="flex items-center justify-between mb-14">
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-10">
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-10 sm:mb-14">
           <motion.p
             className="text-white/40 text-[13px]"
             style={{ fontFamily: "'IBM Plex Mono', monospace" }}
@@ -43,21 +43,21 @@ export function ProjectsSection() {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.5 }}
           >
-            .../About project ...
+            .../Sobre proyectos ...
           </motion.p>
           <motion.p
-            className="text-white/40 text-[13px] max-w-[360px] text-right hidden sm:block"
+            className="text-white/40 text-[13px] max-w-[360px] text-left sm:text-right"
             style={{ fontFamily: "'Inter', sans-serif" }}
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            A selection of projects where design and code work together.
+            Una selección de proyectos donde el diseño y el código trabajan juntos.
           </motion.p>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-6">
+        <div className="flex flex-col md:flex-row gap-4 sm:gap-6">
           {projects.map((project, i) => (
             <motion.div
               key={project.id}
@@ -100,14 +100,14 @@ export function ProjectsSection() {
                   {project.desc}
                 </p>
                 <motion.button
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#0a0a0a] text-[12px] hover:bg-white/90 transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#0a0a0a] text-[12px] hover:bg-white/90 transition-colors w-fit"
                   style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}
                   initial={{ opacity: 0, y: 16, scale: 0.9 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.5 }}
                   transition={{ duration: 0.5, delay: 0.45 + i * 0.12 }}
                 >
-                  Read more
+                  Leer más
                   <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
