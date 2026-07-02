@@ -59,7 +59,7 @@ export function DesignCaseStudyModal({
             onClick={onClose}
           />
           <motion.div
-            className="relative z-10 w-[95vw] max-w-[1100px] h-[90vh] rounded-[28px] overflow-y-auto shadow-2xl bg-[#fefce8] text-[#016634] px-6 sm:px-12 py-14 sm:py-16"
+            className="relative z-10 w-[95vw] max-w-[1100px] h-[90vh] rounded-[28px] overflow-y-auto shadow-2xl bg-[#fefce8] text-[#016634] px-6 sm:px-12 py-14 sm:py-16 no-scrollbar"
             onWheel={(e) => e.stopPropagation()}
             onTouchMove={(e) => e.stopPropagation()}
             initial={{ opacity: 0, scale: 0.92, y: 24 }}
