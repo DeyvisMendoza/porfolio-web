@@ -1,13 +1,21 @@
 import { useState } from "react";
 import { CONTACT } from "../../shared/constants/contact";
 import { useMode } from "../context/ModeContext";
+import { Handshake } from "lucide-react";
 
 const ITEMS = [
   {
     label: CONTACT.email,
     href: "mailto:" + CONTACT.email,
     icon: (
-      <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      <svg
+        viewBox="0 0 24 24"
+        className="w-4 h-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      >
         <rect x="2" y="4" width="20" height="16" rx="2" />
         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
       </svg>
@@ -17,7 +25,14 @@ const ITEMS = [
     label: CONTACT.phone,
     href: "tel:" + CONTACT.phone.replace(/\s/g, ""),
     icon: (
-      <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+      <svg
+        viewBox="0 0 24 24"
+        className="w-4 h-4"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      >
         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12 19.79 19.79 0 0 1 1.08 3.4 2 2 0 0 1 3.06 1.25h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.09 9.1a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 21 16.92z" />
       </svg>
     ),
@@ -62,7 +77,11 @@ export function FloatingContact() {
                   ? "text-[#00ff41] bg-[#161b22] border border-[#30363d] hover:border-[#00ff41]"
                   : "text-[#016634] bg-[#fee95a] hover:bg-yellow-300"
               }`}
-              style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, fontSize: 13 }}
+              style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontWeight: 600,
+                fontSize: 13,
+              }}
             >
               {item.icon}
               <span className="whitespace-nowrap">{item.label}</span>
@@ -73,7 +92,9 @@ export function FloatingContact() {
 
       <div className="relative">
         {!open && (
-          <span className={`absolute inset-0 rounded-full animate-ping pointer-events-none ${isDev ? "bg-[#00ff41]/40" : "bg-[#fee95a]/40"}`} />
+          <span
+            className={`absolute inset-0 rounded-full animate-ping pointer-events-none ${isDev ? "bg-[#00ff41]/40" : "bg-[#fee95a]/40"}`}
+          />
         )}
         <button
           onClick={() => setOpen((v) => !v)}
@@ -85,12 +106,27 @@ export function FloatingContact() {
           aria-label={open ? "Cerrar contacto" : "Ver contacto"}
         >
           {open ? (
-            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+            <svg
+              viewBox="0 0 24 24"
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+            >
               <path d="M18 6 6 18M6 6l12 12" />
             </svg>
           ) : (
-            <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+            <svg
+              viewBox="0 0 24 24"
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            >
+              {/* <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /> */}
+              <Handshake />
             </svg>
           )}
         </button>

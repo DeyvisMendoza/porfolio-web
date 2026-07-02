@@ -8,19 +8,19 @@ const projects = [
     id: "tadiclick",
     img: imgTadiclick,
     title: "Tadiclick — App de préstamos y finanzas",
-    desc: "Una aplicación móvil completa para gestionar préstamos personales, pagos, historial de desembolsos y recordatorios. Construida con React y Supabase.",
+    desc: "Interfaz móvil para gestionar préstamos personales, pagos y recordatorios. Construí los formularios y la experiencia en React para que la navegación sea sencilla.",
   },
   {
     id: "vast",
     img: imgVast,
     title: "VAST — Plataforma de servicios técnicos",
-    desc: "Un SaaS para que las empresas soliciten mantenimiento correctivo y preventivo. Tickets, asignación de técnicos y panel de métricas.",
+    desc: "SaaS para solicitud de mantenimiento técnico. Trabajé en los flujos de creación de tickets y en una experiencia de usuario clara y accesible.",
   },
   {
     id: "dymm",
     img: imgDymm,
     title: "Dymm — Sistema de autenticación multiplataforma",
-    desc: "Plataforma unificada de autenticación con inicio de sesión social, verificación por correo y recuperación de contraseña. Next.js + Supabase + OAuth.",
+    desc: "Interfaz de autenticación con login social, verificación por correo y recuperación de contraseña. Enfocado en frontend y conexión con APIs.",
   },
 ];
 
@@ -53,7 +53,8 @@ export function ProjectsSection() {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Una selección de proyectos donde el diseño y el código trabajan juntos.
+            Una selección de proyectos donde el diseño y el código trabajan
+            juntos.
           </motion.p>
         </div>
 
@@ -68,8 +69,8 @@ export function ProjectsSection() {
                 i === 0
                   ? { opacity: 0, x: -60, y: 40, rotate: -2 }
                   : i === 1
-                  ? { opacity: 0, y: 60, scale: 0.9 }
-                  : { opacity: 0, x: 60, y: 40, rotate: 2 }
+                    ? { opacity: 0, y: 60, scale: 0.9 }
+                    : { opacity: 0, x: 60, y: 40, rotate: 2 }
               }
               whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -89,7 +90,10 @@ export function ProjectsSection() {
               <div className="p-6">
                 <h3
                   className="text-white text-[16px] mb-2"
-                  style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}
+                  style={{
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontWeight: 600,
+                  }}
                 >
                   {project.title}
                 </h3>
@@ -99,23 +103,40 @@ export function ProjectsSection() {
                 >
                   {project.desc}
                 </p>
-                <motion.button
+                <a
+                  href={`#dev-${project.id}`}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#0a0a0a] text-[12px] hover:bg-white/90 transition-colors w-fit"
-                  style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}
-                  initial={{ opacity: 0, y: 16, scale: 0.9 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, amount: 0.5 }}
-                  transition={{ duration: 0.5, delay: 0.45 + i * 0.12 }}
+                  style={{
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontWeight: 600,
+                  }}
                 >
                   Leer más
-                  <svg viewBox="0 0 24 24" className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="w-3.5 h-3.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                  >
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
-                </motion.button>
+                </a>
               </div>
             </motion.div>
           ))}
         </div>
+        {/* Render dev case study sections for each project (anchor targets) */}
+        {projects.map((p) => (
+          // lazy inline import to avoid circular deps; render minimal detail section
+          <div id={`dev-${p.id}`} key={p.id} className="mt-8">
+            <div className="w-full max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-8 border-t border-white/6">
+              <h3 className="text-xl text-white font-semibold">{p.title}</h3>
+              <p className="text-white/60 mt-2">{p.desc}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </motion.section>
   );

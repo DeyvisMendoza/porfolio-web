@@ -36,7 +36,10 @@ const projects = [
   },
 ];
 
-function normalizeRect(a: { x: number; y: number }, b: { x: number; y: number }) {
+function normalizeRect(
+  a: { x: number; y: number },
+  b: { x: number; y: number },
+) {
   return {
     left: Math.min(a.x, b.x),
     top: Math.min(a.y, b.y),
@@ -45,8 +48,16 @@ function normalizeRect(a: { x: number; y: number }, b: { x: number; y: number })
   };
 }
 
-function rectsIntersect(a: DOMRect, b: { left: number; top: number; right: number; bottom: number }) {
-  return !(a.right < b.left || a.left > b.right || a.bottom < b.top || a.top > b.bottom);
+function rectsIntersect(
+  a: DOMRect,
+  b: { left: number; top: number; right: number; bottom: number },
+) {
+  return !(
+    a.right < b.left ||
+    a.left > b.right ||
+    a.bottom < b.top ||
+    a.top > b.bottom
+  );
 }
 
 function FlipCard({
@@ -76,7 +87,9 @@ function FlipCard({
         {/* CARA FRONTAL */}
         <div
           className={`relative w-full backface-hidden cursor-pointer ${
-            selected ? "rounded-[36px] ring-2 ring-[#0d99ff] ring-offset-4 ring-offset-[#1e1e1e]" : ""
+            selected
+              ? "rounded-[36px] ring-2 ring-[#0d99ff] ring-offset-4 ring-offset-[#1e1e1e]"
+              : ""
           }`}
           style={{ backfaceVisibility: "hidden" }}
         >
@@ -108,7 +121,9 @@ function FlipCard({
         {/* CARA TRASERA */}
         <div
           className={`absolute inset-0 w-full h-full rounded-[32px] border-[4px] border-[#111] bg-[#fee95a] p-5 flex flex-col justify-between cursor-pointer ${
-            selected ? "ring-2 ring-[#0d99ff] ring-offset-4 ring-offset-[#1e1e1e]" : ""
+            selected
+              ? "ring-2 ring-[#0d99ff] ring-offset-4 ring-offset-[#1e1e1e]"
+              : ""
           }`}
           style={{
             backfaceVisibility: "hidden",
@@ -119,13 +134,19 @@ function FlipCard({
           <div>
             <h3
               className="text-[#016634] text-[20px] mb-1"
-              style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700 }}
+              style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontWeight: 700,
+              }}
             >
               {project.title}
             </h3>
             <p
               className="text-[#016634]/70 text-[11px] mb-4"
-              style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}
+              style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontWeight: 500,
+              }}
             >
               {project.role}
             </p>
@@ -141,11 +162,32 @@ function FlipCard({
               <span
                 key={tag}
                 className="px-2 py-0.5 rounded bg-[#016634] text-white text-[10px]"
-                style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontWeight: 600,
+                }}
               >
                 {tag}
               </span>
             ))}
+          </div>
+          <div className="mt-4">
+            <a
+              href={`#design-${project.id}`}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#0a0a0a] text-[12px] hover:bg-white/90 transition-colors"
+            >
+              Leer más
+              <svg
+                viewBox="0 0 24 24"
+                className="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </a>
           </div>
         </div>
       </div>
@@ -156,7 +198,10 @@ function FlipCard({
 export function ProjectsSection() {
   const [flippedIds, setFlippedIds] = useState<string[]>([]);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
-  const [selectionBox, setSelectionBox] = useState<{ start: { x: number; y: number }; end: { x: number; y: number } } | null>(null);
+  const [selectionBox, setSelectionBox] = useState<{
+    start: { x: number; y: number };
+    end: { x: number; y: number };
+  } | null>(null);
   const dragRef = useRef({ isDragging: false, startX: 0, startY: 0 });
 
   const handleMouseDown = (e: React.MouseEvent<HTMLElement>) => {
@@ -164,15 +209,27 @@ export function ProjectsSection() {
     const target = e.target as HTMLElement;
     if (target.closest("[data-project-id]") && flippedIds.length > 0) return;
 
-    dragRef.current = { isDragging: false, startX: e.clientX, startY: e.clientY };
-    setSelectionBox({ start: { x: e.clientX, y: e.clientY }, end: { x: e.clientX, y: e.clientY } });
+    dragRef.current = {
+      isDragging: false,
+      startX: e.clientX,
+      startY: e.clientY,
+    };
+    setSelectionBox({
+      start: { x: e.clientX, y: e.clientY },
+      end: { x: e.clientX, y: e.clientY },
+    });
   };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     if (!selectionBox) return;
-    const dist = Math.hypot(e.clientX - dragRef.current.startX, e.clientY - dragRef.current.startY);
+    const dist = Math.hypot(
+      e.clientX - dragRef.current.startX,
+      e.clientY - dragRef.current.startY,
+    );
     if (dist > 5) dragRef.current.isDragging = true;
-    setSelectionBox((prev) => (prev ? { ...prev, end: { x: e.clientX, y: e.clientY } } : prev));
+    setSelectionBox((prev) =>
+      prev ? { ...prev, end: { x: e.clientX, y: e.clientY } } : prev,
+    );
   };
 
   const handleMouseUp = () => {
@@ -182,7 +239,9 @@ export function ProjectsSection() {
       const rect = normalizeRect(selectionBox.start, selectionBox.end);
       const nextSelected = projects
         .filter((p) => {
-          const el = document.querySelector(`[data-project-id="${p.id}"]`) as HTMLElement | null;
+          const el = document.querySelector(
+            `[data-project-id="${p.id}"]`,
+          ) as HTMLElement | null;
           if (!el) return false;
           const r = el.getBoundingClientRect();
           return rectsIntersect(r, rect);
@@ -196,7 +255,9 @@ export function ProjectsSection() {
 
   const handleCardClick = (id: string) => {
     if (dragRef.current.isDragging) return;
-    setFlippedIds((prev) => (prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]));
+    setFlippedIds((prev) =>
+      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
+    );
     setSelectedIds((prev) => prev.filter((x) => x !== id));
   };
 
@@ -266,7 +327,13 @@ export function ProjectsSection() {
             initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
             whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
             viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.6, delay: 0.2, type: "spring", stiffness: 160, damping: 16 }}
+            transition={{
+              duration: 0.6,
+              delay: 0.2,
+              type: "spring",
+              stiffness: 160,
+              damping: 16,
+            }}
           />
         </div>
       </motion.div>
@@ -276,7 +343,10 @@ export function ProjectsSection() {
         <div className="relative flex justify-center mb-12">
           <motion.h2
             className="text-white text-center text-[36px] sm:text-[48px]"
-            style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700 }}
+            style={{
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontWeight: 700,
+            }}
             initial={{ opacity: 0, x: -60, scale: 0.9 }}
             whileInView={{ opacity: 1, x: 0, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -289,7 +359,12 @@ export function ProjectsSection() {
             initial={{ opacity: 0, x: 60, scale: 0.8, rotate: 20 }}
             whileInView={{ opacity: 1, x: 0, scale: 1, rotate: 6 }}
             viewport={{ once: true, amount: 0.5 }}
-            transition={{ type: "spring", stiffness: 160, damping: 14, delay: 0.4 }}
+            transition={{
+              type: "spring",
+              stiffness: 160,
+              damping: 14,
+              delay: 0.4,
+            }}
           >
             <HiddenNote rotate={6} color="bg-[#0d99ff]" textColor="text-white">
               Estos son mis favoritos. Tengo mas escondidos en GitHub.
@@ -305,8 +380,8 @@ export function ProjectsSection() {
                 i === 0
                   ? { opacity: 0, x: -80, rotate: -6, scale: 0.95 }
                   : i === 1
-                  ? { opacity: 0, y: 60, scale: 0.8, rotate: 0, x: 0 }
-                  : { opacity: 0, x: 80, rotate: 6, scale: 0.95 }
+                    ? { opacity: 0, y: 60, scale: 0.8, rotate: 0, x: 0 }
+                    : { opacity: 0, x: 80, rotate: 6, scale: 0.95 }
               }
               whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -331,7 +406,12 @@ export function ProjectsSection() {
           initial={{ opacity: 0, y: 40, scale: 0.8, rotate: -8 }}
           whileInView={{ opacity: 1, y: 0, scale: 1, rotate: 3 }}
           viewport={{ once: true, amount: 0.5 }}
-          transition={{ type: "spring", stiffness: 160, damping: 14, delay: 0.8 }}
+          transition={{
+            type: "spring",
+            stiffness: 160,
+            damping: 14,
+            delay: 0.8,
+          }}
         >
           <HiddenNote rotate={3} color="bg-[#444]" textColor="text-white">
             Cada mockup pesa menos de lo que pesa mi paciencia con CSS.
@@ -347,8 +427,18 @@ export function ProjectsSection() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, delay: 1 }}
         >
-          Click en un proyecto para voltearlo · Arrastra para seleccionar como en Figma
+          Click en un proyecto para voltearlo · Arrastra para seleccionar como
+          en Figma
         </motion.p>
+        {/* Design case study anchors (inline minimal detail sections) */}
+        {projects.map((p) => (
+          <div id={`design-${p.id}`} key={p.id} className="mt-8">
+            <div className="w-full max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-8 border-t border-white/6">
+              <h3 className="text-xl text-white font-semibold">{p.title}</h3>
+              <p className="text-white/60 mt-2">{p.text}</p>
+            </div>
+          </div>
+        ))}
       </div>
     </motion.section>
   );
