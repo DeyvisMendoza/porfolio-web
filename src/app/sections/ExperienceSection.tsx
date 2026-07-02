@@ -1,7 +1,87 @@
 import { EXPERIENCE_ITEMS } from "../../shared/constants/experience";
 import { HiddenNote } from "../../components/HiddenNote";
+import { useMode } from "../context/ModeContext";
 
 export function ExperienceSection() {
+  const { isDev } = useMode();
+
+  if (isDev) {
+    return (
+      <section className="relative w-full bg-[#0d1117] overflow-hidden pt-32 pb-24">
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.06]"
+          style={{
+            backgroundImage: "linear-gradient(rgba(0,255,65,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,65,0.4) 1px, transparent 1px)",
+            backgroundSize: "40px 40px",
+          }}
+        />
+
+        <div className="relative z-10 w-full max-w-[1280px] mx-auto px-5 sm:px-10">
+          <div className="flex justify-center mb-16">
+            <h2
+              className="text-[#00ff41] text-[28px] sm:text-[36px]"
+              style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700 }}
+            >
+              &lt;Experiencia /&gt;
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-y-10 gap-x-8 items-start">
+            {EXPERIENCE_ITEMS.map((card, i) => (
+              <div
+                key={i}
+                className="rounded-lg border border-[#30363d] bg-[#161b22] overflow-hidden transition-transform duration-300 hover:-translate-y-1 hover:border-[#00ff41]"
+              >
+                <div className="flex items-center gap-2 px-4 py-2 bg-[#21262d] border-b border-[#30363d]">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f56]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#27c93f]" />
+                  <span
+                    className="ml-2 text-[#8b949e] text-[11px] truncate"
+                    style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+                  >
+                    {card.company.toLowerCase().replace(/\s+/g, "-")}.js
+                  </span>
+                </div>
+                <div className="p-6">
+                  <h3
+                    className="text-[#e6edf3] text-[16px] sm:text-[18px] leading-snug mb-1"
+                    style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700 }}
+                  >
+                    {card.company}
+                  </h3>
+                  <p
+                    className="text-[#8b949e] text-[12px] mb-5"
+                    style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+                  >
+                    {card.location}
+                  </p>
+                  <ul className="space-y-3">
+                    {card.items.map((item, j) => (
+                      <li
+                        key={j}
+                        className="text-[#c9d1d9] text-[13px] sm:text-[14px] leading-snug pl-4 border-l-2 border-[#00ff41]"
+                        style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center mt-16">
+            <HiddenNote rotate={2} color="bg-[#161b22]" textColor="text-[#00ff41]">
+              git log --oneline | head -n 5
+            </HiddenNote>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="relative w-full bg-white overflow-hidden pt-40 pb-24">
       <div

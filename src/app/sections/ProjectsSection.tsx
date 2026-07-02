@@ -4,6 +4,7 @@ import imgVast from "../../assets/vast.svg";
 import imgDymm from "../../assets/dymm.svg";
 import imgFigmaBarra from "../../assets/figmabarra.svg";
 import { HiddenNote } from "../../components/HiddenNote";
+import { useMode } from "../context/ModeContext";
 
 const projects = [
   {
@@ -53,11 +54,13 @@ function FlipCard({
   flipped,
   selected,
   onFlip,
+  isDev,
 }: {
   project: (typeof projects)[number];
   flipped: boolean;
   selected: boolean;
   onFlip: () => void;
+  isDev: boolean;
 }) {
   return (
     <div
@@ -75,7 +78,11 @@ function FlipCard({
         {/* CARA FRONTAL */}
         <div
           className={`relative w-full backface-hidden cursor-pointer ${
-            selected ? "rounded-[36px] ring-2 ring-[#0d99ff] ring-offset-4 ring-offset-[#1e1e1e]" : ""
+            selected
+              ? isDev
+                ? "rounded-lg ring-2 ring-[#00ff41] ring-offset-4 ring-offset-[#0d1117]"
+                : "rounded-[36px] ring-2 ring-[#0d99ff] ring-offset-4 ring-offset-[#1e1e1e]"
+              : ""
           }`}
           style={{ backfaceVisibility: "hidden" }}
         >
@@ -106,9 +113,13 @@ function FlipCard({
 
         {/* CARA TRASERA */}
         <div
-          className={`absolute inset-0 w-full h-full rounded-[32px] border-[4px] border-[#111] bg-[#fee95a] p-5 flex flex-col justify-between cursor-pointer ${
-            selected ? "ring-2 ring-[#0d99ff] ring-offset-4 ring-offset-[#1e1e1e]" : ""
-          }`}
+          className={`absolute inset-0 w-full h-full rounded-[32px] border-[4px] border-[#111] p-5 flex flex-col justify-between cursor-pointer ${
+            selected
+              ? isDev
+                ? "ring-2 ring-[#00ff41] ring-offset-4 ring-offset-[#0d1117]"
+                : "ring-2 ring-[#0d99ff] ring-offset-4 ring-offset-[#1e1e1e]"
+              : ""
+          } ${isDev ? "bg-[#161b22]" : "bg-[#fee95a]"}`}
           style={{
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
@@ -117,19 +128,19 @@ function FlipCard({
         >
           <div>
             <h3
-              className="text-[#016634] text-[20px] mb-1"
+              className={`text-[20px] mb-1 ${isDev ? "text-[#00ff41]" : "text-[#016634]"}`}
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700 }}
             >
               {project.title}
             </h3>
             <p
-              className="text-[#016634]/70 text-[11px] mb-4"
+              className={`text-[11px] mb-4 ${isDev ? "text-[#8b949e]" : "text-[#016634]/70"}`}
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}
             >
               {project.role}
             </p>
             <p
-              className="text-[#016634] text-[12px] leading-[20px]"
+              className={`text-[12px] leading-[20px] ${isDev ? "text-[#c9d1d9]" : "text-[#016634]"}`}
               style={{ fontFamily: "'Inter', sans-serif" }}
             >
               {project.text}
@@ -139,7 +150,9 @@ function FlipCard({
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-0.5 rounded bg-[#016634] text-white text-[10px]"
+                className={`px-2 py-0.5 rounded text-white text-[10px] ${
+                  isDev ? "bg-[#00d4aa]" : "bg-[#016634]"
+                }`}
                 style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}
               >
                 {tag}
@@ -153,6 +166,7 @@ function FlipCard({
 }
 
 export function ProjectsSection() {
+  const { isDev } = useMode();
   const [flippedIds, setFlippedIds] = useState<string[]>([]);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [selectionBox, setSelectionBox] = useState<{ start: { x: number; y: number }; end: { x: number; y: number } } | null>(null);
@@ -160,7 +174,6 @@ export function ProjectsSection() {
 
   const handleMouseDown = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
-    // ignorar si el click empezo dentro de una tarjeta volteada (para permitir seleccionar texto)
     const target = e.target as HTMLElement;
     if (target.closest("[data-project-id]") && flippedIds.length > 0) return;
 
@@ -211,6 +224,80 @@ export function ProjectsSection() {
         };
       })()
     : null;
+
+  if (isDev) {
+    return (
+      <section
+        className="relative w-full bg-[#0d1117] overflow-hidden py-16 sm:py-20 select-none"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+      >
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.05]"
+          style={{
+            backgroundImage: "radial-gradient(#00ff41 1px, transparent 1px)",
+            backgroundSize: "24px 24px",
+          }}
+        />
+
+        {boxStyle && (
+          <div
+            className="fixed z-[100] border border-[#00ff41] bg-[#00ff41]/10 pointer-events-none"
+            style={{
+              left: boxStyle.left,
+              top: boxStyle.top,
+              width: boxStyle.width,
+              height: boxStyle.height,
+            }}
+          />
+        )}
+
+        <div className="relative z-10 w-full max-w-[1280px] mx-auto px-5 sm:px-10">
+          <div className="relative flex justify-center mb-12">
+            <h2
+              className="text-[#00ff41] text-center text-[36px] sm:text-[48px]"
+              style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700 }}
+            >
+              Repositorios
+            </h2>
+            <div className="hidden sm:block absolute right-0 lg:-right-4 top-0">
+              <HiddenNote rotate={6} color="bg-[#161b22]" textColor="text-[#00ff41]">
+                Todos los proyectos tienen su historia en GitHub.
+              </HiddenNote>
+            </div>
+          </div>
+
+          <div className="flex flex-col md:flex-row items-center justify-center gap-14 md:gap-8 lg:gap-16">
+            {projects.map((p) => (
+              <FlipCard
+                key={p.id}
+                project={p}
+                flipped={flippedIds.includes(p.id)}
+                selected={selectedIds.includes(p.id)}
+                onFlip={() => handleCardClick(p.id)}
+                isDev
+              />
+            ))}
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-6 mt-10">
+            <HiddenNote rotate={3} color="bg-[#161b22]" textColor="text-[#00d4aa]">
+              El codigo esta comentado... mas o menos.
+            </HiddenNote>
+          </div>
+
+          <p
+            className="text-[#8b949e]/50 text-center text-[12px] mt-10"
+            style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+          >
+            Click en un repo para voltearlo · Arrastra para seleccionar
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section
@@ -277,6 +364,7 @@ export function ProjectsSection() {
               flipped={flippedIds.includes(p.id)}
               selected={selectedIds.includes(p.id)}
               onFlip={() => handleCardClick(p.id)}
+              isDev={false}
             />
           ))}
         </div>

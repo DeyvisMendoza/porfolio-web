@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CONTACT } from "../../shared/constants/contact";
+import { useMode } from "../context/ModeContext";
 
 const ITEMS = [
   {
@@ -44,6 +45,7 @@ const ITEMS = [
 
 export function FloatingContact() {
   const [open, setOpen] = useState(false);
+  const { isDev } = useMode();
 
   return (
     <div className="fixed bottom-6 right-5 z-50 flex flex-col items-end gap-3">
@@ -55,7 +57,11 @@ export function FloatingContact() {
               href={item.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-3 text-[#016634] bg-[#fee95a] hover:bg-yellow-300 rounded-full px-4 py-2.5 shadow-lg transition-all hover:scale-105"
+              className={`flex items-center gap-3 rounded-full px-4 py-2.5 shadow-lg transition-all hover:scale-105 ${
+                isDev
+                  ? "text-[#00ff41] bg-[#161b22] border border-[#30363d] hover:border-[#00ff41]"
+                  : "text-[#016634] bg-[#fee95a] hover:bg-yellow-300"
+              }`}
               style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600, fontSize: 13 }}
             >
               {item.icon}
@@ -67,11 +73,15 @@ export function FloatingContact() {
 
       <div className="relative">
         {!open && (
-          <span className="absolute inset-0 rounded-full bg-[#fee95a]/40 animate-ping pointer-events-none" />
+          <span className={`absolute inset-0 rounded-full animate-ping pointer-events-none ${isDev ? "bg-[#00ff41]/40" : "bg-[#fee95a]/40"}`} />
         )}
         <button
           onClick={() => setOpen((v) => !v)}
-          className="relative size-[54px] rounded-full bg-[#016634] text-white border-2 border-[#fee95a] shadow-2xl flex items-center justify-center transition-all hover:scale-110 active:scale-95"
+          className={`relative size-[54px] rounded-full shadow-2xl flex items-center justify-center transition-all hover:scale-110 active:scale-95 ${
+            isDev
+              ? "bg-[#00ff41] text-[#0d1117] border-2 border-[#161b22]"
+              : "bg-[#016634] text-white border-2 border-[#fee95a]"
+          }`}
           aria-label={open ? "Cerrar contacto" : "Ver contacto"}
         >
           {open ? (

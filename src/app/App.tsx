@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { HeroSection } from "./sections/HeroSection";
 import { ExperienceSection } from "./sections/ExperienceSection";
 import { SkillsSection } from "./sections/SkillsSection";
@@ -8,15 +7,15 @@ import { Footer } from "../components/Footer";
 import { FloatingContact } from "./sections/FloatingContact";
 import { SmoothScroll } from "../components/SmoothScroll";
 import { ScrollToTop } from "../components/ScrollToTop";
+import { ModeProvider, useMode } from "./context/ModeContext";
 
-export default function App() {
-  const [activeTab, setActiveTab] = useState<"design" | "dev">("design");
-
+function AppContent() {
+  const { isDev } = useMode();
   return (
     <SmoothScroll>
-      <div className="w-full min-h-screen bg-white overflow-x-hidden">
+      <div className={`w-full min-h-screen overflow-x-hidden transition-colors duration-500 ${isDev ? "bg-[#0d1117]" : "bg-white"}`}>
         <section id="inicio">
-          <HeroSection activeTab={activeTab} onTabChange={setActiveTab} />
+          <HeroSection />
         </section>
         <section id="experiencia">
           <ExperienceSection />
@@ -35,5 +34,13 @@ export default function App() {
         <ScrollToTop />
       </div>
     </SmoothScroll>
+  );
+}
+
+export default function App() {
+  return (
+    <ModeProvider>
+      <AppContent />
+    </ModeProvider>
   );
 }

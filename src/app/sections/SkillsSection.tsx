@@ -2,6 +2,13 @@ import imgEtiquetas21 from "../../imports/Frame2/4e3f7b3fd6a3cd6472893471b506ffd
 import imgEtiqueta31 from "../../imports/Frame2/019b3d5eba962e665f522cb8d3f32d3163407c39.png";
 import imgEtiquetas11 from "../../imports/Frame2/1d3e996443a3727e028778b179a87b99dc215403.png";
 import { HiddenNote } from "../../components/HiddenNote";
+import { useMode } from "../context/ModeContext";
+
+const devSkills = [
+  { category: "Frontend", items: ["React", "TypeScript", "Next.js", "Tailwind CSS", "Vite"] },
+  { category: "Backend & DB", items: ["Supabase", "Node.js", "PostgreSQL", "REST APIs", "Auth"] },
+  { category: "Tools", items: ["Git", "GitHub Copilot", "Figma", "Vercel", "Bolt"] },
+];
 
 function Sticker({
   img,
@@ -29,6 +36,66 @@ function Sticker({
 }
 
 export function SkillsSection() {
+  const { isDev } = useMode();
+
+  if (isDev) {
+    return (
+      <section className="relative w-full bg-[#161b22] overflow-hidden py-20">
+        <div
+          className="absolute inset-0 pointer-events-none opacity-[0.05]"
+          style={{
+            backgroundImage: "radial-gradient(#00ff41 1px, transparent 1px)",
+            backgroundSize: "28px 28px",
+          }}
+        />
+
+        <div className="relative z-10 w-full max-w-[1280px] mx-auto px-5 sm:px-10">
+          <div className="flex justify-center mb-14">
+            <h2
+              className="text-[#00d4aa] text-[28px] sm:text-[36px]"
+              style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700 }}
+            >
+              import {"{ Skills }"} from <span className="text-[#00ff41]">"./deyvis"</span>;
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {devSkills.map((group) => (
+              <div
+                key={group.category}
+                className="rounded-lg border border-[#30363d] bg-[#0d1117] p-6 transition-transform duration-300 hover:-translate-y-1"
+              >
+                <h3
+                  className="text-[#00ff41] text-[14px] mb-4 uppercase tracking-wider"
+                  style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700 }}
+                >
+                  // {group.category}
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1 rounded border border-[#30363d] bg-[#161b22] text-[#c9d1d9] text-[13px] hover:border-[#00d4aa] hover:text-[#00d4aa] transition-colors"
+                      style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex justify-center mt-12">
+            <HiddenNote rotate={-3} color="bg-[#0d1117]" textColor="text-[#00d4aa]">
+              Tambien debuggeo con console.log como todo un profesional.
+            </HiddenNote>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="relative w-full bg-white overflow-hidden py-20">
       <div
