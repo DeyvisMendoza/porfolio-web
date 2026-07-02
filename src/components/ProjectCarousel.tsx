@@ -1,19 +1,19 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-      <div
-        ref={scrollRef}
-        onScroll={handleScroll}
-        className="flex gap-4 sm:gap-6 overflow-x-auto px-4 sm:px-6 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {children.map((child, i) => {
-          const childWidth = (React.isValidElement(child) && (child.props as any)?.dataWidth) || itemWidth;
-          return (
-            <div key={i} className={`flex-shrink-0 snap-center ${childWidth}`}>
-              {child}
-            </div>
-          );
-        })}
-      </div>
+
+interface ProjectCarouselProps {
+  children: React.ReactNode[];
+  maxWidth?: string;
+  itemWidth?: string;
+  theme: "design" | "dev";
+}
+
+export function ProjectCarousel({
+  children,
+  maxWidth = "max-w-[1280px]",
+  itemWidth = "w-[280px]",
+  theme,
+}: ProjectCarouselProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const itemStepRef = useRef(0);
   const [activeIndex, setActiveIndex] = useState(0);

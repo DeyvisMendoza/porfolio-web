@@ -1,7 +1,15 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import imgTadiclick from "../../../assets/tadiclick.svg";
 import imgVast from "../../../assets/vast.svg";
 import imgDymm from "../../../assets/dymm.svg";
+import imgHysionWeb from "../../../assets/hysion-web.svg";
+import imgKypacApp from "../../../assets/kypac-app.svg";
+import imgFoodiegoApp from "../../../assets/foodiego-app.svg";
+import imgStudioNineWeb from "../../../assets/studionine-web.svg";
+import imgAgrotrackWeb from "../../../assets/agrotrack-web.svg";
+import { DevCaseStudyModal } from "../../../components/DevCaseStudyModal";
+import { ProjectCarousel } from "../../../components/ProjectCarousel";
 
 const projects = [
   {
@@ -22,9 +30,41 @@ const projects = [
     title: "Dymm — Sistema de autenticación multiplataforma",
     desc: "Interfaz de autenticación con login social, verificación por correo y recuperación de contraseña. Enfocado en frontend y conexión con APIs.",
   },
+  {
+    id: "hysion-web",
+    img: imgHysionWeb,
+    title: "Hysion Web — Landing de agencia",
+    desc: "Sitio web de agencia con portfolio, servicios y formulario de contacto. Animaciones de scroll y diseño responsivo con React y Tailwind CSS.",
+  },
+  {
+    id: "kypac-app",
+    img: imgKypacApp,
+    title: "Kypac — E-commerce y pagos",
+    desc: "App de e-commerce con Stripe, carrito en tiempo real y seguimiento de pedidos. Frontend en React con estado global para el carrito.",
+  },
+  {
+    id: "foodiego-app",
+    img: imgFoodiegoApp,
+    title: "FoodieGo — Delivery de comida",
+    desc: "App de delivery con integración de Google Maps, menús dinámicos y reseñas. Construí el tracking del repartidor en tiempo real.",
+  },
+  {
+    id: "studionine-web",
+    img: imgStudioNineWeb,
+    title: "StudioNine — Portfolio creativo",
+    desc: "Sitio web de estudio con animaciones de scroll y blog en MDX. Frontend en React con Tailwind y Framer Motion.",
+  },
+  {
+    id: "agrotrack-web",
+    img: imgAgrotrackWeb,
+    title: "AgroTrack — Monitoreo agrícola",
+    desc: "Dashboard de monitoreo con gráficos en tiempo real y mapas interactivos. Frontend en Next.js con WebSocket para datos de sensores.",
+  },
 ];
 
 export function ProjectsSection() {
+  const [openCaseStudy, setOpenCaseStudy] = useState<string | null>(null);
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -58,26 +98,28 @@ export function ProjectsSection() {
           </motion.p>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-4 sm:gap-6">
+        <ProjectCarousel
+          theme="dev"
+          maxWidth="max-w-[1200px]"
+          itemWidth="w-[300px] sm:w-[340px]"
+        >
           {projects.map((project, i) => (
             <motion.div
               key={project.id}
-              className={`group relative flex-1 rounded-[28px] overflow-hidden border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors ${
-                i === 1 ? "md:-translate-y-4" : ""
-              }`}
+              className="group relative rounded-[28px] overflow-hidden border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors w-[300px] sm:w-[340px]"
               initial={
-                i === 0
+                i % 3 === 0
                   ? { opacity: 0, x: -60, y: 40, rotate: -2 }
-                  : i === 1
+                  : i % 3 === 1
                     ? { opacity: 0, y: 60, scale: 0.9 }
                     : { opacity: 0, x: 60, y: 40, rotate: 2 }
               }
               whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={
-                i === 1
-                  ? { type: "spring", stiffness: 160, damping: 14, delay: 0.2 }
-                  : { duration: 0.7, delay: 0.15 + i * 0.12, ease: "easeOut" }
+                i % 3 === 1
+                  ? { type: "spring", stiffness: 160, damping: 14, delay: 0.15 }
+                  : { duration: 0.7, delay: 0.1 + i * 0.1, ease: "easeOut" }
               }
             >
               <div className="aspect-[4/3] overflow-hidden">
@@ -103,8 +145,9 @@ export function ProjectsSection() {
                 >
                   {project.desc}
                 </p>
-                <a
-                  href={`#dev-${project.id}`}
+                <button
+                  type="button"
+                  onClick={() => setOpenCaseStudy(project.id)}
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#0a0a0a] text-[12px] hover:bg-white/90 transition-colors w-fit"
                   style={{
                     fontFamily: "'IBM Plex Mono', monospace",
@@ -122,21 +165,16 @@ export function ProjectsSection() {
                   >
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
-                </a>
+                </button>
               </div>
             </motion.div>
           ))}
-        </div>
-        {/* Render dev case study sections for each project (anchor targets) */}
-        {projects.map((p) => (
-          // lazy inline import to avoid circular deps; render minimal detail section
-          <div id={`dev-${p.id}`} key={p.id} className="mt-8">
-            <div className="w-full max-w-[1100px] mx-auto px-4 sm:px-6 lg:px-10 py-8 border-t border-white/6">
-              <h3 className="text-xl text-white font-semibold">{p.title}</h3>
-              <p className="text-white/60 mt-2">{p.desc}</p>
-            </div>
-          </div>
-        ))}
+        </ProjectCarousel>
+        <DevCaseStudyModal
+          isOpen={!!openCaseStudy}
+          onClose={() => setOpenCaseStudy(null)}
+          projectId={openCaseStudy || ""}
+        />
       </div>
     </motion.section>
   );

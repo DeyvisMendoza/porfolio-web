@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" fill="none">
+  <rect width="800" height="500" rx="16" fill="#0d0d0d"/>
+  <rect x="0" y="0" width="800" height="50" rx="16" fill="#1a1a1a"/>
+  <rect x="16" y="18" width="14" height="14" rx="7" fill="#ef4444"/>
+  <rect x="38" y="18" width="14" height="14" rx="7" fill="#f59e0b"/>
+  <rect x="60" y="18" width="14" height="14" rx="7" fill="#22c55e"/>
+  <text x="100" y="33" font-family="'IBM Plex Mono', monospace" font-size="12" fill="#666">studionine.dev</text>
+  <rect x="40" y="80" width="500" height="60" rx="8" fill="#1a1a1a"/>
+  <text x="60" y="120" font-family="'IBM Plex Mono', monospace" font-size="28" font-weight="800" fill="#f8fafc">StudioNine</text>
+  <rect x="40" y="160" width="320" height="14" rx="4" fill="#475569"/>
+  <rect x="40" y="185" width="380" height="10" rx="4" fill="#334155"/>
+  <rect x="40" y="220" width="140" height="14" rx="4" fill="#475569"/>
+  <rect x="40" y="245" width="200" height="10" rx="4" fill="#334155"/>
+  <rect x="40" y="280" width="160" height="48" rx="10" fill="#fbbf24"/>
+  text x="65" y="310" font-family="'IBM Plex Mono', monospace" font-size="16" font-weight="700" fill="#0d0d0d">Ver portfolio</text>
+  <rect x="40" y="350" width="340" height="120" rx="12" fill="#1a1a1a"/>
+  <rect x="400" y="350" width="340" height="120" rx="12" fill="#1a1a1a"/>
+  <rect x="40" y="80" width="360" height="330" rx="12" fill="#1a1a1a" opacity="0.5"/>
+  <rect x="480" y="80" width="280" height="330" rx="12" fill="#1a1a1a"/>
+  <rect x="500" y="100" width="240" height="16" rx="4" fill="#fbbf24"/>
+  <rect x="500" y="130" width="180" height="10" rx="4" fill="#475569"/>
+  <rect x="500" y="155" width="220" height="8" rx="4" fill="#334155"/>
+  <rect x="500" y="170" width="200" height="8" rx="4" fill="#334155"/>
+  <rect x="500" y="200" width="240" height="80" rx="8" fill="#0d0d0d"/>
+  <rect x="520" y="300" width="100" height="10" rx="4" fill="#fbbf24"/>
+  <rect x="520" y="320" width="180" height="8" rx="4" fill="#475569"/>
+  <rect x="520" y="355" width="120" height="36" rx="18" fill="#fbbf24"/>
+</svg>

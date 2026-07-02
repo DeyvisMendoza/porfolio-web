@@ -436,47 +436,33 @@ export function ProjectsSection() {
           maxWidth="max-w-[1280px]"
           itemWidth="w-[260px] sm:w-[280px]"
         >
-          {projects.map((p, i) => {
-            const isWeb = p.id.includes("web");
-            const dataWidth = isWeb
-              ? "w-[420px] sm:w-[460px]"
-              : "w-[260px] sm:w-[280px]";
-            return (
-              <motion.div
-                key={p.id}
-                data-width={dataWidth}
-                dataWidth={dataWidth}
-                initial={
-                  i % 3 === 0
-                    ? { opacity: 0, x: -80, rotate: -6, scale: 0.95 }
-                    : i % 3 === 1
-                      ? { opacity: 0, y: 60, scale: 0.8, rotate: 0, x: 0 }
-                      : { opacity: 0, x: 80, rotate: 6, scale: 0.95 }
-                }
-                whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={
-                  i % 3 === 1
-                    ? {
-                        type: "spring",
-                        stiffness: 160,
-                        damping: 14,
-                        delay: 0.25,
-                      }
-                    : { duration: 0.7, delay: 0.25 + i * 0.1, ease: "easeOut" }
-                }
-                className={`h-[520px] flex flex-col justify-start`}
-              >
-                <FlipCard
-                  project={p}
-                  flipped={flippedIds.includes(p.id)}
-                  selected={selectedIds.includes(p.id)}
-                  onFlip={() => handleCardClick(p.id)}
-                  onReadMore={() => setOpenCaseStudy(p.id)}
-                />
-              </motion.div>
-            );
-          })}
+          {projects.map((p, i) => (
+            <motion.div
+              key={p.id}
+              initial={
+                i % 3 === 0
+                  ? { opacity: 0, x: -80, rotate: -6, scale: 0.95 }
+                  : i % 3 === 1
+                    ? { opacity: 0, y: 60, scale: 0.8, rotate: 0, x: 0 }
+                    : { opacity: 0, x: 80, rotate: 6, scale: 0.95 }
+              }
+              whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={
+                i % 3 === 1
+                  ? { type: "spring", stiffness: 160, damping: 14, delay: 0.25 }
+                  : { duration: 0.7, delay: 0.25 + i * 0.1, ease: "easeOut" }
+              }
+            >
+              <FlipCard
+                project={p}
+                flipped={flippedIds.includes(p.id)}
+                selected={selectedIds.includes(p.id)}
+                onFlip={() => handleCardClick(p.id)}
+                onReadMore={() => setOpenCaseStudy(p.id)}
+              />
+            </motion.div>
+          ))}
         </ProjectCarousel>
 
         <motion.div

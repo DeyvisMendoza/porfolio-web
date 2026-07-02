@@ -1,5 +1,19 @@
-import { useEffect, useRef, type ReactNode } from "react";
+import { createContext, useContext, useEffect, useRef, type ReactNode } from "react";
 import Lenis from "lenis";
+
+interface SmoothScrollContextValue {
+  stop: () => void;
+  start: () => void;
+}
+
+const SmoothScrollContext = createContext<SmoothScrollContextValue>({
+  stop: () => {},
+  start: () => {},
+});
+
+export function useSmoothScroll() {
+  return useContext(SmoothScrollContext);
+}
 
 export function SmoothScroll({ children }: { children: ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
@@ -27,5 +41,14 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     };
   }, []);
 
-  return <>{children}</>;
+  const value: SmoothScrollContextValue = {
+    stop: () => lenisRef.current?.stop(),
+    start: () => lenisRef.current?.start(),
+  };
+
+  return (
+    <SmoothScrollContext.Provider value={value}>
+      {children}
+    </SmoothScrollContext.Provider>
+  );
 }
