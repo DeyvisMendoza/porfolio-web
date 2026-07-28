@@ -109,7 +109,7 @@ export function ImageCarousel({ images, alt, theme = "design" }: ImageCarouselPr
       {/* Scroll container */}
       <div
         ref={scrollRef}
-        className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-1"
+        className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-1 items-center"
       >
         {images.map((img, i) => (
           <div
