@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useMode } from "../app/context/ModeContext";
 import { getDesignCaseStudyById } from "../shared/constants/designCaseStudies";
 import { getDevCaseStudyById } from "../shared/constants/devCaseStudies";
+import { ImageCarousel } from "../components/ImageCarousel";
 
 function DesignDetailView({ projectId }: { projectId: string }) {
   const study = getDesignCaseStudyById(projectId);
@@ -108,67 +109,122 @@ function DesignDetailView({ projectId }: { projectId: string }) {
         </motion.div>
       </section>
 
-      {/* Mockup */}
+      {/* Mockup Principal */}
       <section className="max-w-[1200px] mx-auto px-6 py-12">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="rounded-[32px] overflow-hidden border-4 border-[#016634]/20 max-w-[700px] mx-auto"
+          className="rounded-[32px] overflow-hidden border-4 border-[#016634]/20 max-w-[600px] mx-auto bg-[#016634]/5"
         >
           <img
-            src={study.beforeAfter.mockup}
+            src={study.mockup}
             alt={`Mockup de ${study.title}`}
-            className="w-full h-auto object-cover max-h-[450px]"
+            className="w-full h-auto object-contain"
           />
         </motion.div>
-        <p
-          className="text-center text-[#016634]/60 text-sm mt-4"
-          style={{ fontFamily: "'IBM Plex Mono', monospace" }}
-        >
-          {study.beforeAfter.caption}
-        </p>
       </section>
 
-      {/* Proceso de Diseño */}
+      {/* Proceso de Diseño - 12 Etapas */}
       <section className="max-w-[1200px] mx-auto px-6 py-16">
         <motion.h2
           initial={{ opacity: 0, x: -40 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-[#016634] text-3xl mb-12"
+          className="text-[#016634] text-3xl mb-16"
           style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700 }}
         >
           Proceso de Diseño
         </motion.h2>
-        <div className="space-y-16">
-          {study.processSteps.map((step, i) => (
+
+        <div className="space-y-20">
+          {study.processPhases.map((phase, i) => (
             <motion.div
-              key={i}
+              key={phase.id}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="relative pl-8 border-l-2 border-[#016634]/20"
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="relative"
             >
-              <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-[#016634]" />
-              <h3
-                className="text-[#016634] text-xl mb-2"
-                style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}
-              >
-                {step.title}
-              </h3>
-              <p className="text-[#016634]/70 mb-4">{step.description}</p>
-              <ul className="space-y-2">
-                {step.details.map((detail, j) => (
-                  <li key={j} className="flex items-start gap-3 text-[#016634]/80 text-sm">
-                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#016634]/40 flex-shrink-0" />
-                    {detail}
-                  </li>
-                ))}
-              </ul>
+              {/* Phase Number Badge */}
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 rounded-full bg-[#016634] text-white flex items-center justify-center text-sm font-bold flex-shrink-0"
+                  style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+                >
+                  {i + 1}
+                </div>
+                <h3
+                  className="text-[#016634] text-2xl"
+                  style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 700 }}
+                >
+                  {phase.title.replace(/^\d+\.\s*/, "")}
+                </h3>
+              </div>
+
+              {/* Description */}
+              <p className="text-[#016634]/70 text-lg mb-6 max-w-[800px] ml-14">
+                {phase.description}
+              </p>
+
+              <div className="ml-14 grid grid-cols-1 lg:grid-cols-2 gap-8">
+                {/* Activities */}
+                <div>
+                  <h4
+                    className="text-[#016634] text-sm mb-3 uppercase tracking-wider"
+                    style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}
+                  >
+                    Actividades
+                  </h4>
+                  <ul className="space-y-2">
+                    {phase.activities.map((activity, j) => (
+                      <li key={j} className="flex items-start gap-3 text-[#016634]/80 text-sm">
+                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[#016634]/40 flex-shrink-0" />
+                        {activity}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Deliverables */}
+                <div>
+                  <h4
+                    className="text-[#016634] text-sm mb-3 uppercase tracking-wider"
+                    style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 600 }}
+                  >
+                    Entregables
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {phase.deliverables.map((deliverable, j) => (
+                      <span
+                        key={j}
+                        className="px-3 py-1 rounded-full bg-[#016634]/10 text-[#016634] text-xs"
+                        style={{ fontFamily: "'IBM Plex Mono', monospace", fontWeight: 500 }}
+                      >
+                        {deliverable}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Images Carousel */}
+              {phase.images.length > 0 && (
+                <div className="mt-8 ml-14">
+                  <ImageCarousel
+                    images={phase.images}
+                    alt={`${phase.title} - ${study.title}`}
+                    theme="design"
+                  />
+                </div>
+              )}
+
+              {/* Separator */}
+              {i < study.processPhases.length - 1 && (
+                <div className="mt-16 border-b border-[#016634]/10" />
+              )}
             </motion.div>
           ))}
         </div>
@@ -341,12 +397,12 @@ function DevDetailView({ projectId }: { projectId: string }) {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="rounded-[32px] overflow-hidden border border-white/10 max-w-[700px] mx-auto"
+          className="rounded-[32px] overflow-hidden border border-white/10 max-w-[600px] mx-auto bg-white/[0.02]"
         >
           <img
             src={study.figmaToCode.mockup}
             alt={`Mockup de ${study.title}`}
-            className="w-full h-auto object-cover max-h-[450px]"
+            className="w-full h-auto object-contain"
           />
         </motion.div>
         <p
@@ -376,7 +432,7 @@ function DevDetailView({ projectId }: { projectId: string }) {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
               className="relative pl-8 border-l-2 border-white/10"
             >
               <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-white" />
