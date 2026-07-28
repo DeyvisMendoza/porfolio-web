@@ -6,7 +6,7 @@ import imgKypacApp from "../../assets/kypac-app.svg";
 import imgFoodiegoApp from "../../assets/foodiego-app.svg";
 import imgStudioNineWeb from "../../assets/studionine-web.svg";
 import imgAgrotrackWeb from "../../assets/agrotrack-web.svg";
-import imgFlujoGeneral from "../../assets/case-studies/tadiclick/define/Flujo general.svg";
+import imgFlujoGeneral from "../../assets/case-studies/tadiclick/define/flujo general.svg";
 import imgIdea1 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 1.svg";
 import imgIdea2 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 2.svg";
 import imgIdea3 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 3.svg";
