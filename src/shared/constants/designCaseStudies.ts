@@ -198,7 +198,7 @@ export const designCaseStudies: DesignCaseStudy[] = [
       "Redujimos la tasa de abandono en el flujo de solicitud un 38 % y aumentamos la confianza medida en pruebas de usabilidad, con 9 de cada 10 usuarios identificando correctamente el costo total.",
     mockup: imgTadiclick,
     processPhases: createProcessPhases({
-      "discovery": [imgTadiclick],
+      "discovery": [imgTadiclick, imgTadiclick],
       "ux-research": [],
       "define": [],
       "ideate": [],
