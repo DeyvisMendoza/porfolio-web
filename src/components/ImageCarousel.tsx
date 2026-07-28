@@ -1,3 +1,5 @@
+import { useRef, useState, useCallback, useEffect } from "react";
+
 interface ImageCarouselProps {
   images: string[];
   alt: string;
@@ -5,10 +7,16 @@ interface ImageCarouselProps {
 }
 
 export function ImageCarousel({ images, alt, theme = "design" }: ImageCarouselProps) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
   if (images.length === 0) return null;
 
   const bgColor = theme === "design" ? "bg-[#016634]/5" : "bg-white/[0.02]";
   const borderColor = theme === "design" ? "border-[#016634]/20" : "border-white/10";
+  const arrowBg = theme === "design" ? "bg-[#016634]" : "bg-white";
+  const arrowText = theme === "design" ? "text-white" : "text-[#0a0a0a]";
 
   // 1 imagen: mostrar sola
   if (images.length === 1) {
@@ -40,11 +48,68 @@ export function ImageCarousel({ images, alt, theme = "design" }: ImageCarouselPr
     );
   }
 
-  // 3+ imágenes: scroll horizontal
+  // 3+ imágenes: scroll horizontal con flechas
+  const checkScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 10);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 10);
+  }, []);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    checkScroll();
+    el.addEventListener("scroll", checkScroll);
+    window.addEventListener("resize", checkScroll);
+    return () => {
+      el.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("resize", checkScroll);
+    };
+  }, [checkScroll]);
+
+  const scroll = (direction: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const scrollAmount = el.clientWidth * 0.6;
+    el.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="relative">
+    <div className="relative group">
+      {/* Flecha izquierda */}
+      {canScrollLeft && (
+        <button
+          type="button"
+          onClick={() => scroll("left")}
+          className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 ${arrowBg} ${arrowText} w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg`}
+        >
+          <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M15 18l-6-6 6-6" />
+          </svg>
+        </button>
+      )}
+
+      {/* Flecha derecha */}
+      {canScrollRight && (
+        <button
+          type="button"
+          onClick={() => scroll("right")}
+          className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 ${arrowBg} ${arrowText} w-10 h-10 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity shadow-lg`}
+        >
+          <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 18l6-6-6-6" />
+          </svg>
+        </button>
+      )}
+
+      {/* Scroll container */}
       <div
-        className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-1"
       >
         {images.map((img, i) => (
           <div
@@ -57,17 +122,6 @@ export function ImageCarousel({ images, alt, theme = "design" }: ImageCarouselPr
               className="w-full h-auto object-contain max-h-[350px]"
             />
           </div>
-        ))}
-      </div>
-      {/* Indicador de scroll */}
-      <div className="flex justify-center gap-1.5 mt-3">
-        {images.map((_, i) => (
-          <div
-            key={i}
-            className={`w-1.5 h-1.5 rounded-full ${
-              theme === "design" ? "bg-[#016634]/30" : "bg-white/30"
-            }`}
-          />
         ))}
       </div>
     </div>
