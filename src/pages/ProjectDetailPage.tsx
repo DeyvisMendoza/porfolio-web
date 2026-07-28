@@ -115,12 +115,12 @@ function DesignDetailView({ projectId }: { projectId: string }) {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="rounded-[32px] overflow-hidden border-4 border-[#016634]/20"
+          className="rounded-[32px] overflow-hidden border-4 border-[#016634]/20 max-w-[700px] mx-auto"
         >
           <img
             src={study.beforeAfter.mockup}
             alt={`Mockup de ${study.title}`}
-            className="w-full h-auto"
+            className="w-full h-auto object-cover max-h-[450px]"
           />
         </motion.div>
         <p
@@ -341,12 +341,12 @@ function DevDetailView({ projectId }: { projectId: string }) {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="rounded-[32px] overflow-hidden border border-white/10"
+          className="rounded-[32px] overflow-hidden border border-white/10 max-w-[700px] mx-auto"
         >
           <img
             src={study.figmaToCode.mockup}
             alt={`Mockup de ${study.title}`}
-            className="w-full h-auto"
+            className="w-full h-auto object-cover max-h-[450px]"
           />
         </motion.div>
         <p
