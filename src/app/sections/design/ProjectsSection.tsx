@@ -1,16 +1,16 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import imgTadiclick from "../../../assets/tadiclick.svg";
 import imgVast from "../../../assets/vast.svg";
 import imgDymm from "../../../assets/dymm.svg";
 import imgHysionWeb from "../../../assets/hysion-web.svg";
-import imgKypacApp from "../../../assets/kypac-app.svg";
+import imgKypacApp from "../../../assets/kypac.png";
 import imgFoodiegoApp from "../../../assets/foodiego-app.svg";
 import imgStudioNineWeb from "../../../assets/studionine-web.svg";
 import imgAgrotrackWeb from "../../../assets/agrotrack-web.svg";
 import imgFigmaBarra from "../../../assets/figmabarra.svg";
 import { HiddenNote } from "../../../components/HiddenNote";
-import { DesignCaseStudyModal } from "../../../components/DesignCaseStudyModal";
 import { ProjectCarousel } from "../../../components/ProjectCarousel";
 
 const projects = [
@@ -51,7 +51,7 @@ const projects = [
     tags: ["Figma", "React", "Tailwind CSS", "Framer Motion"],
   },
   {
-    id: "kypac-app",
+    id: "kypac",
     img: imgKypacApp,
     title: "Kypac",
     subtitle: "E-commerce y pagos digitales",
@@ -116,31 +116,32 @@ function FlipCard({
   project,
   flipped,
   selected,
-  onFlip,
-  onReadMore,
 }: {
   project: (typeof projects)[number];
   flipped: boolean;
   selected: boolean;
-  onFlip: () => void;
-  onReadMore: () => void;
 }) {
   return (
-    <div
-      className="group perspective-[1000px] w-[260px] sm:w-[280px]"
+    <Link
+      to={`/projects/${project.id}`}
+      className="group perspective-[1000px] w-[260px] sm:w-[280px] h-full min-h-0 block"
       data-project-id={project.id}
+      onClick={(e) => {
+        if (flipped) {
+          e.preventDefault();
+        }
+      }}
     >
       <div
-        className="relative w-full transition-transform duration-700"
+        className="relative w-full h-full transition-transform duration-700"
         style={{
           transformStyle: "preserve-3d",
           transform: flipped ? "rotateY(180deg)" : "rotateY(0deg)",
         }}
-        onClick={onFlip}
       >
         {/* CARA FRONTAL */}
         <div
-          className={`relative w-full backface-hidden cursor-pointer ${
+          className={`relative w-full h-full backface-hidden cursor-pointer flex flex-col items-start min-h-0 ${
             selected
               ? "rounded-[36px] ring-2 ring-[#0d99ff] ring-offset-4 ring-offset-[#1e1e1e]"
               : ""
@@ -154,18 +155,18 @@ function FlipCard({
             {project.id}
           </span>
           <div
-            className="overflow-hidden rounded-[32px] border-[4px] border-[#111] bg-transparent transition-transform duration-300 hover:scale-[1.04] hover:-translate-y-2"
+            className="overflow-hidden rounded-[32px] border-[4px] border-[#111] bg-transparent transition-transform duration-300 hover:scale-[1.04] hover:-translate-y-2 flex-1 min-h-0"
             style={{ filter: "drop-shadow(0 32px 64px rgba(0,0,0,0.12))" }}
           >
             <img
               src={project.img}
               alt={`Mockup de ${project.title}`}
-              className="w-full h-auto block pointer-events-none"
+              className="w-full h-full object-cover block pointer-events-none"
               loading="lazy"
             />
           </div>
           <p
-            className="text-white/50 text-[13px] text-center mt-3 mx-auto max-w-[220px]"
+            className="text-white/50 text-[13px] text-center mt-3 mx-auto max-w-[220px] flex-shrink-0"
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
             {project.subtitle}
@@ -226,12 +227,7 @@ function FlipCard({
             ))}
           </div>
           <div className="mt-4">
-            <button
-              type="button"
-              onClick={(e) => {
-                e.stopPropagation();
-                onReadMore();
-              }}
+            <span
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#0a0a0a] text-[12px] hover:bg-white/90 transition-colors"
             >
               Leer más
@@ -245,28 +241,26 @@ function FlipCard({
               >
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </button>
+            </span>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
 export function ProjectsSection() {
-  const [flippedIds, setFlippedIds] = useState<string[]>([]);
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [selectionBox, setSelectionBox] = useState<{
     start: { x: number; y: number };
     end: { x: number; y: number };
   } | null>(null);
-  const [openCaseStudy, setOpenCaseStudy] = useState<string | null>(null);
   const dragRef = useRef({ isDragging: false, startX: 0, startY: 0 });
 
   const handleMouseDown = (e: React.MouseEvent<HTMLElement>) => {
     if (e.button !== 0) return;
     const target = e.target as HTMLElement;
-    if (target.closest("[data-project-id]") && flippedIds.length > 0) return;
+    if (target.closest("[data-project-id]") && selectedIds.length > 0) return;
 
     dragRef.current = {
       isDragging: false,
@@ -310,14 +304,6 @@ export function ProjectsSection() {
     }
 
     setSelectionBox(null);
-  };
-
-  const handleCardClick = (id: string) => {
-    if (dragRef.current.isDragging) return;
-    setFlippedIds((prev) =>
-      prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id],
-    );
-    setSelectedIds((prev) => prev.filter((x) => x !== id));
   };
 
   const boxStyle = selectionBox
@@ -435,6 +421,8 @@ export function ProjectsSection() {
           theme="design"
           maxWidth="max-w-[1280px]"
           itemWidth="w-[260px] sm:w-[280px]"
+
+          // itemHeight="h-[520px] sm:h-[560px]"
         >
           {projects.map((p, i) => (
             <motion.div
@@ -456,10 +444,8 @@ export function ProjectsSection() {
             >
               <FlipCard
                 project={p}
-                flipped={flippedIds.includes(p.id)}
+                flipped={false}
                 selected={selectedIds.includes(p.id)}
-                onFlip={() => handleCardClick(p.id)}
-                onReadMore={() => setOpenCaseStudy(p.id)}
               />
             </motion.div>
           ))}
@@ -491,14 +477,9 @@ export function ProjectsSection() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.6, delay: 1 }}
         >
-          Click en un proyecto para voltearlo · Arrastra para seleccionar como
-          en Figma
+          Click en un proyecto para ver el proceso · Arrastra para seleccionar
+          como en Figma
         </motion.p>
-        <DesignCaseStudyModal
-          isOpen={!!openCaseStudy}
-          onClose={() => setOpenCaseStudy(null)}
-          projectId={openCaseStudy || ""}
-        />
       </div>
     </motion.section>
   );

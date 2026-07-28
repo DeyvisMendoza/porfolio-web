@@ -1,5 +1,5 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import imgTadiclick from "../../../assets/tadiclick.svg";
 import imgVast from "../../../assets/vast.svg";
 import imgDymm from "../../../assets/dymm.svg";
@@ -8,7 +8,6 @@ import imgKypacApp from "../../../assets/kypac-app.svg";
 import imgFoodiegoApp from "../../../assets/foodiego-app.svg";
 import imgStudioNineWeb from "../../../assets/studionine-web.svg";
 import imgAgrotrackWeb from "../../../assets/agrotrack-web.svg";
-import { DevCaseStudyModal } from "../../../components/DevCaseStudyModal";
 import { ProjectCarousel } from "../../../components/ProjectCarousel";
 
 const projects = [
@@ -63,8 +62,6 @@ const projects = [
 ];
 
 export function ProjectsSection() {
-  const [openCaseStudy, setOpenCaseStudy] = useState<string | null>(null);
-
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -104,77 +101,74 @@ export function ProjectsSection() {
           itemWidth="w-[300px] sm:w-[340px]"
         >
           {projects.map((project, i) => (
-            <motion.div
+            <Link
+              to={`/projects/${project.id}`}
               key={project.id}
-              className="group relative rounded-[28px] overflow-hidden border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors w-[300px] sm:w-[340px]"
-              initial={
-                i % 3 === 0
-                  ? { opacity: 0, x: -60, y: 40, rotate: -2 }
-                  : i % 3 === 1
-                    ? { opacity: 0, y: 60, scale: 0.9 }
-                    : { opacity: 0, x: 60, y: 40, rotate: 2 }
-              }
-              whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={
-                i % 3 === 1
-                  ? { type: "spring", stiffness: 160, damping: 14, delay: 0.15 }
-                  : { duration: 0.7, delay: 0.1 + i * 0.1, ease: "easeOut" }
-              }
             >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={project.img}
-                  alt={project.title}
-                  className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-                />
-              </div>
-              <div className="p-6">
-                <h3
-                  className="text-white text-[16px] mb-2"
-                  style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontWeight: 600,
-                  }}
-                >
-                  {project.title}
-                </h3>
-                <p
-                  className="text-white/40 text-[13px] leading-relaxed mb-5"
-                  style={{ fontFamily: "'Inter', sans-serif" }}
-                >
-                  {project.desc}
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setOpenCaseStudy(project.id)}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#0a0a0a] text-[12px] hover:bg-white/90 transition-colors w-fit"
-                  style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontWeight: 600,
-                  }}
-                >
-                  Leer más
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="w-3.5 h-3.5"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
+              <motion.div
+                className="group relative rounded-[28px] overflow-hidden border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors w-[300px] sm:w-[340px]"
+                initial={
+                  i % 3 === 0
+                    ? { opacity: 0, x: -60, y: 40, rotate: -2 }
+                    : i % 3 === 1
+                      ? { opacity: 0, y: 60, scale: 0.9 }
+                      : { opacity: 0, x: 60, y: 40, rotate: 2 }
+                }
+                whileInView={{ opacity: 1, x: 0, y: 0, rotate: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={
+                  i % 3 === 1
+                    ? { type: "spring", stiffness: 160, damping: 14, delay: 0.15 }
+                    : { duration: 0.7, delay: 0.1 + i * 0.1, ease: "easeOut" }
+                }
+              >
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={project.img}
+                    alt={project.title}
+                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3
+                    className="text-white text-[16px] mb-2"
+                    style={{
+                      fontFamily: "'IBM Plex Mono', monospace",
+                      fontWeight: 600,
+                    }}
                   >
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </button>
-              </div>
-            </motion.div>
+                    {project.title}
+                  </h3>
+                  <p
+                    className="text-white/40 text-[13px] leading-relaxed mb-5"
+                    style={{ fontFamily: "'Inter', sans-serif" }}
+                  >
+                    {project.desc}
+                  </p>
+                  <span
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#0a0a0a] text-[12px] hover:bg-white/90 transition-colors w-fit"
+                    style={{
+                      fontFamily: "'IBM Plex Mono', monospace",
+                      fontWeight: 600,
+                    }}
+                  >
+                    Leer más
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="w-3.5 h-3.5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                    >
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </span>
+                </div>
+              </motion.div>
+            </Link>
           ))}
         </ProjectCarousel>
-        <DevCaseStudyModal
-          isOpen={!!openCaseStudy}
-          onClose={() => setOpenCaseStudy(null)}
-          projectId={openCaseStudy || ""}
-        />
       </div>
     </motion.section>
   );

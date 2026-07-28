@@ -24,6 +24,11 @@ export interface DesignCaseStudy {
     caption: string;
   };
   outcome: string;
+  processSteps: {
+    title: string;
+    description: string;
+    details: string[];
+  }[];
 }
 
 export const designCaseStudies: DesignCaseStudy[] = [
@@ -74,6 +79,44 @@ export const designCaseStudies: DesignCaseStudy[] = [
     },
     outcome:
       "Redujimos la tasa de abandono en el flujo de solicitud un 38 % y aumentamos la confianza medida en pruebas de usabilidad, con 9 de cada 10 usuarios identificando correctamente el costo total.",
+    processSteps: [
+      {
+        title: "Investigación y descubrimiento",
+        description: "Entendimos a los usuarios y su relación con los préstamos.",
+        details: [
+          "Entrevistas con 12 usuarios potenciales de不同tes perfiles financieros.",
+          "Análisis de apps existentes de préstamos: identificamos patrones de desconfianza.",
+          "Mapa de empatía que reveló que la ansiedad era mayor que la necesidad de dinero.",
+        ],
+      },
+      {
+        title: "Wireframes y estructura",
+        description: "Diseñamos la arquitectura de información y flujos principales.",
+        details: [
+          "Wireframes de baja fidelidad para el flujo de solicitud en 3 pasos.",
+          "User flows que eliminaron 4 pasos innecesarios del proceso original.",
+          "Arquitectura de información centrada en transparencia de costos.",
+        ],
+      },
+      {
+        title: "Diseño visual y sistema de diseño",
+        description: "Creamos un sistema visual que transmitiera confianza y claridad.",
+        details: [
+          "Paleta de colores con verdes oscuros (confianza) y amarillos (atención).",
+          "Tipografía dual: IBM Plex Mono para cifras, Inter para lectura.",
+          "Componentes reutilizables: tarjetas de resumen, timeline de pagos, formularios.",
+        ],
+      },
+      {
+        title: "Prototipado y pruebas",
+        description: "Validamos el diseño con usuarios reales antes de desarrollar.",
+        details: [
+          "Prototipo interactivo en Figma con 15 pantallas clave.",
+          "Pruebas de usabilidad con 8 usuarios que completaron el flujo.",
+          "Iteraciones basadas en feedback: simplificamos el resumen de préstamo.",
+        ],
+      },
+    ],
   },
   {
     id: "vast",
@@ -122,6 +165,44 @@ export const designCaseStudies: DesignCaseStudy[] = [
     },
     outcome:
       "El tiempo promedio de asignación bajó de horas a minutos y los coordinadores redujeron la generación de reportes manuales en un 70 %.",
+    processSteps: [
+      {
+        title: "Descubrimiento del ecosistema",
+        description: "Mapeamos el flujo caótico de tickets existente.",
+        details: [
+          "Observación de campo: seguimos a 5 coordinadores durante una semana.",
+          "Documentación de 7 canales de entrada (WhatsApp, email, teléfono, etc.).",
+          "Identificación de 3 roles clave: coordinador, técnico y cliente.",
+        ],
+      },
+      {
+        title: "Diseño de la arquitectura",
+        description: "Estructuramos el sistema alrededor del ciclo de vida del ticket.",
+        details: [
+          "Mapa de navegación con 3 vistas principales: Kanban, Equipos, Métricas.",
+          "Definición de estados: Nuevo → Asignado → En Progreso → Resuelto.",
+          "Diseño de permisos por rol para cada acción del sistema.",
+        ],
+      },
+      {
+        title: "Diseño de componentes",
+        description: "Creamos un design system consistente para toda la plataforma.",
+        details: [
+          "Componentes de tarjeta de ticket con estado visual semáforo.",
+          "Vista kanban con drag & drop para asignación rápida.",
+          "Dashboard de métricas con gráficos de rendimiento por técnico.",
+        ],
+      },
+      {
+        title: "Prototipado avanzado y validación",
+        description: "Probamos flujos completos con stakeholders reales.",
+        details: [
+          "Prototipo interactivo de 25 pantallas con flujo completo.",
+          "Pruebas con 5 coordinadores que gestionan tickets diariamente.",
+          "Iteración del kanban: simplificamos la vista de asignación.",
+        ],
+      },
+    ],
   },
   {
     id: "Dymm",
@@ -170,6 +251,44 @@ export const designCaseStudies: DesignCaseStudy[] = [
     },
     outcome:
       "El tiempo de integración para nuevos clientes pasó de días a horas y la tasa de recuperación de cuentas mejoró notoriamente al simplificar el flujo de mágica link.",
+    processSteps: [
+      {
+        title: "Análisis de flujos de auth",
+        description: "Estudiamos los patrones de autenticación más efectivos.",
+        details: [
+          "Benchmark de 8 sistemas de auth (Auth0, Supabase, Firebase, etc.).",
+          "Identificación de 4 métodos principales: email, social, magic link, SSO.",
+          "Definición de requisitos de accesibilidad WCAG 2.1 AA.",
+        ],
+      },
+      {
+        title: "Diseño del sistema unificado",
+        description: "Creamos un sistema que unificara múltiples métodos de login.",
+        details: [
+          "Layout compartido para login, registro y recuperación de contraseña.",
+          "Componentes modulares: input, botón social, divider, mensaje de error.",
+          "Paleta dual: modo claro para usuarios finales, oscuro para admins.",
+        ],
+      },
+      {
+        title: "Flujos de usuario y error handling",
+        description: "Diseñamos cada escenario posible del flujo de autenticación.",
+        details: [
+          "User flows para: login exitoso, error de credenciales, cuenta bloqueada.",
+          "Manejo de errores de OAuth con mensajes claros y acciones de recuperación.",
+          "Flujo de magic link con estados: enviado, verificado, expirado.",
+        ],
+      },
+      {
+        title: "Pruebas de accesibilidad",
+        description: "Validamos que el sistema fuera usable por todos.",
+        details: [
+          "Pruebas con lector de pantalla (NVDA, VoiceOver) en cada flujo.",
+          "Contraste de colores verificado para WCAG AAA en elementos críticos.",
+          "Navegación completa por teclado sin mouse.",
+        ],
+      },
+    ],
   },
   {
     id: "hysion-web",
@@ -218,6 +337,44 @@ export const designCaseStudies: DesignCaseStudy[] = [
     },
     outcome:
       "La tasa de conversión del formulario aumentó un 45 % en el primer mes y el tiempo de permanencia en la página subió gracias a las animaciones de scroll.",
+    processSteps: [
+      {
+        title: "Definición de marca",
+        description: "Establecimos la identidad visual de la agencia.",
+        details: [
+          "Paleta de colores con acentos vibrantes sobre fondo neutro.",
+          "Selección tipográfica: Inter para lectura, monospace para etiquetas técnicas.",
+          "Definición de estilo de iconografía y elementos gráficos.",
+        ],
+      },
+      {
+        title: "Estructura de contenido",
+        description: "Organizamos la información para máxima conversión.",
+        details: [
+          "Jerarquía: Hero (valor) → Servicios → Portfolio → Contacto.",
+          "CTA principal fijo en el hero para capturar leads inmediatos.",
+          "Sección de proyectos con hover revelador para engagement.",
+        ],
+      },
+      {
+        title: "Diseño visual y animaciones",
+        description: "Creamos una experiencia visual memorable y fluida.",
+        details: [
+          "Hero con animación de entrada que comunica el valor en 3 segundos.",
+          "Grid de proyectos con transiciones hover que revelan detalles.",
+          "Formulario de contacto con validación en tiempo real y feedback visual.",
+        ],
+      },
+      {
+        title: "Optimización de rendimiento",
+        description: "Aseguramos carga rápida sin sacrificar animaciones.",
+        details: [
+          "Lazy loading de imágenes y code splitting por sección.",
+          "Animaciones con Framer Motion whileInView para carga bajo demanda.",
+          "Optimización de fuentes con display swap para LCP mínimo.",
+        ],
+      },
+    ],
   },
   {
     id: "kypac-app",
@@ -266,6 +423,44 @@ export const designCaseStudies: DesignCaseStudy[] = [
     },
     outcome:
       "Reducimos el abandono de carrito un 32 % en el primer mes y el tiempo medio de checkout bajó de 3 minutos a 45 segundos, con seguimiento de pedido en vivo.",
+    processSteps: [
+      {
+        title: "Análisis de abandono",
+        description: "Identificamos exactamente dónde perdíamos usuarios.",
+        details: [
+          "Análisis de funnel: 68% abandonaba en el paso de datos de pago.",
+          "Heatmaps que revelaban confusión en el formulario de dirección.",
+          "Entrevistas con 8 clientes que abandonaron el carrito.",
+        ],
+      },
+      {
+        title: "Rediseño del checkout",
+        description: "Simplificamos el pago a un solo paso con métodos guardados.",
+        details: [
+          "Consolidación de 4 pasos en 1: dirección + pago en una pantalla.",
+          "Integración de Stripe Elements con pagos guardados (Apple Pay, Google Pay).",
+          "Validación en tiempo real de datos de tarjeta y dirección.",
+        ],
+      },
+      {
+        title: "Experiencia post-pago",
+        description: "Diseñamos la confirmación y seguimiento del pedido.",
+        details: [
+          "Pantalla de confirmación inmediata con resumen visual del pedido.",
+          "Tracking en tiempo real del estado: Procesando → Enviado → Entregado.",
+          "Notificaciones push para actualizaciones de estado.",
+        ],
+      },
+      {
+        title: "Pruebas y optimización",
+        description: "Validamos con datos reales y optimizamos el flujo.",
+        details: [
+          "A/B testing del checkout: versión simplificada vs. original.",
+          "Pruebas de usabilidad con 10 usuarios completando compras.",
+          "Iteración basada en métricas: tiempo de checkout y tasa de conversión.",
+        ],
+      },
+    ],
   },
   {
     id: "foodiego-app",
@@ -314,6 +509,44 @@ export const designCaseStudies: DesignCaseStudy[] = [
     },
     outcome:
       "Aumentamos los pedidos recurrentes un 50 % y redujimos las llamadas de soporte sobre estado de pedido en un 70 %, gracias al seguimiento en tiempo real.",
+    processSteps: [
+      {
+        title: "Investigación de ansiedad",
+        description: "Entendimos la fuente de estrés de los usuarios.",
+        details: [
+          "Diarios de usuario con 15 personas que pedían delivery regularmente.",
+          "Identificación del patrón: la ansiedad picaba en los primeros 10 min tras pagar.",
+          "Análisis de llamadas al restaurante: 80% eran '¿dónde está mi pedido?'",
+        ],
+      },
+      {
+        title: "Diseño del tracking",
+        description: "Creamos una experiencia de seguimiento en vivo.",
+        details: [
+          "Mapa a pantalla completa con ruta del repartidor en tiempo real.",
+          "Marcador animado con dirección de movimiento y ETA visible.",
+          "Estados del pedido: Preparando → En camino → Cerca → Entregado.",
+        ],
+      },
+      {
+        title: "Menú y disponibilidad",
+        description: "Diseñamos menús que mostraran disponibilidad real.",
+        details: [
+          "Tarjetas de producto con indicador de disponibilidad en tiempo real.",
+          "Sistema de badges: Disponible, Últimos disponibles, Agotado.",
+          "Filtros por disponibilidad para reducir fricción.",
+        ],
+      },
+      {
+        title: "Sistema de reseñas",
+        description: "Creamos un flujo de calificación post-entrega.",
+        details: [
+          "Reseñas con fotos del plato para futuros pedidos.",
+          "Calificación por: Comida, Entrega, Presentación.",
+          "Sistema de recompensas por reseñas frecuentes.",
+        ],
+      },
+    ],
   },
   {
     id: "studionine-web",
@@ -362,6 +595,44 @@ export const designCaseStudies: DesignCaseStudy[] = [
     },
     outcome:
       "El estudio recibió 3 nuevas consultas de clientes en el primer mes y el tiempo de permanencia en el sitio se duplicó gracias a las animaciones de scroll.",
+    processSteps: [
+      {
+        title: "Definición editorial",
+        description: "Establecimos un estilo editorial único y memorable.",
+        details: [
+          "Inspiración en revistas de diseño: jerarquía tipográfica marcada.",
+          "Paleta neutra (blanco, negro, grises) con acentos de marca puntuales.",
+          "Sistema de espaciado y proporciones basado en la retícula editorial.",
+        ],
+      },
+      {
+        title: "Estructura de portfolio",
+        description: "Organizamos los casos de estudio para máximo impacto visual.",
+        details: [
+          "Grid de proyectos con hover que revela el rol y el resultado.",
+          "Cada caso de estudio como página independiente a pantalla completa.",
+          "Animaciones de scroll que descubren el contenido progresivamente.",
+        ],
+      },
+      {
+        title: "Diseño visual y animaciones",
+        description: "Creamos una experiencia visual inmersiva y fluida.",
+        details: [
+          "Hero con tipografía editorial grande y animación de entrada.",
+          "Tarjetas de proyecto con transiciones hover que revelan contexto.",
+          "Animaciones de scroll con Framer Motion whileInView.",
+        ],
+      },
+      {
+        title: "Caso de estudio visual",
+        description: "Diseñamos la vista detallada de cada proyecto.",
+        details: [
+          "Layout de pantalla completa para cada caso de estudio.",
+          "Galería de imágenes con zoom interactivo.",
+          "Sección de proceso creativo con timeline visual.",
+        ],
+      },
+    ],
   },
   {
     id: "agrotrack-web",
@@ -409,9 +680,46 @@ export const designCaseStudies: DesignCaseStudy[] = [
         "Convertimos tablas densas en un dashboard visual con mapa y gráficos en tiempo real que jerarquizan qué cultivo necesita atención.",
     },
     outcome:
-      "Mejoramos la velocidad de decisión del equipo de campo un 60 % y reducimos el tiempo de detección de anomalías de días a horas, gracias a las alertas visuales.",
+      "Mejoramos la velocidad de decisión del equipo de campo un 60 % y redujimos el tiempo de detección de anomalías de días a horas, gracias a las alertas visuales.",
+    processSteps: [
+      {
+        title: "Investigación de datos",
+        description: "Entendimos qué datos importaban y para quién.",
+        details: [
+          "Entrevistas con 6 gerentes de campo y 4 ingenieros agrónomos.",
+          "Análisis de 200+ métricas de sensores: identificamos las 12 más críticas.",
+          "Definición de umbrales de alerta para cada tipo de sensor.",
+        ],
+      },
+      {
+        title: "Diseño de visualización",
+        description: "Creamos gráficos que comunicaran datos complejos claramente.",
+        details: [
+          "Paleta semántica: verde (óptimo), amarillo (precaución), rojo (alerta).",
+          "Gráficos de línea para tendencias, mapas de calor para distribución.",
+          "Dashboard principal con KPIs de cultivos en tiempo real.",
+        ],
+      },
+      {
+        title: "Mapa interactivo",
+        description: "Diseñamos una vista geolocalizada de todos los sensores.",
+        details: [
+          "Mapa a pantalla completa con clustering de sensores cercanos.",
+          "Overlay de información al hacer click en un sensor específico.",
+          "Filtros por tipo de cultivo, estado y rango de fechas.",
+        ],
+      },
+      {
+        title: "Sistema de alertas",
+        description: "Creamos alertas visuales que fueran accionables.",
+        details: [
+          "Alertas en tiempo real con nivel de prioridad (urgente, alto, medio).",
+          "Notificaciones push para anomalies críticas.",
+          "Dashboard de alertas históricas para análisis de tendencias.",
+        ],
+      },
+    ],
   },
-
 ];
 
 export const designCaseStudyMap = new Map<string, DesignCaseStudy>(

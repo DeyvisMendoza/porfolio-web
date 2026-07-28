@@ -1,3 +1,4 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
 import { HeroSection } from "./sections/HeroSection";
 import { ExperienceSection } from "./sections/ExperienceSection";
@@ -9,8 +10,9 @@ import { FloatingContact } from "./sections/FloatingContact";
 import { SmoothScroll } from "../components/SmoothScroll";
 import { ScrollToTop } from "../components/ScrollToTop";
 import { ModeProvider, useMode } from "./context/ModeContext";
+import ProjectDetailPage from "../pages/ProjectDetailPage";
 
-function AppContent() {
+function PortfolioContent() {
   const { mode, isDev } = useMode();
 
   return (
@@ -52,7 +54,12 @@ function AppContent() {
 export default function App() {
   return (
     <ModeProvider>
-      <AppContent />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<PortfolioContent />} />
+          <Route path="/projects/:id" element={<ProjectDetailPage />} />
+        </Routes>
+      </BrowserRouter>
     </ModeProvider>
   );
 }

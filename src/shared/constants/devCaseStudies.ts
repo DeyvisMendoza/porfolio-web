@@ -18,6 +18,11 @@ export interface DevCaseStudy {
   architecture: { title: string; desc: string }[];
   metrics: { label: string; value: string }[];
   deployment: string;
+  buildProcess: {
+    title: string;
+    description: string;
+    details: string[];
+  }[];
 }
 
 export const devCaseStudies: DevCaseStudy[] = [
@@ -64,6 +69,44 @@ export const devCaseStudies: DevCaseStudy[] = [
     ],
     deployment:
       "Frontend desplegado en Vercel con CI/CD automático y previews por pull request. Supabase maneja migraciones y políticas de seguridad a nivel de fila.",
+    buildProcess: [
+      {
+        title: "Configuración del proyecto",
+        description: "Preparamos el entorno y las herramientas de desarrollo.",
+        details: [
+          "Inicialización con Vite + React + TypeScript.",
+          "Configuración de Tailwind CSS con tokens de diseño personalizados.",
+          "Instalación de dependencias: Framer Motion, Supabase, React Router.",
+        ],
+      },
+      {
+        title: "Componentización y diseño",
+        description: "Tradujimos el design system a componentes React.",
+        details: [
+          "Tokens de color y tipografía centralizados en tailwind.config.ts.",
+          "Componentes de formulario controlados con validación en tiempo real.",
+          "Tarjetas de resumen con desglose de préstamo y timeline de pagos.",
+        ],
+      },
+      {
+        title: "Integración de backend",
+        description: "Conectamos la interfaz con Supabase para datos y auth.",
+        details: [
+          "Autenticación con Supabase Auth y manejo de sesiones.",
+          "Edge functions para cálculos de préstamo en tiempo real.",
+          "Políticas de seguridad a nivel de fila para datos financieros.",
+        ],
+      },
+      {
+        title: "Optimización y despliegue",
+        description: "Aseguramos rendimiento y despliegue continuo.",
+        details: [
+          "Lazy loading de rutas secundarias para carga inicial rápida.",
+          "Memoización de cálculos financieros con useMemo.",
+          "Despliegue en Vercel con CI/CD automático y previews por PR.",
+        ],
+      },
+    ],
   },
   {
     id: "vast",
@@ -108,6 +151,44 @@ export const devCaseStudies: DevCaseStudy[] = [
     ],
     deployment:
       "Aplicación Next.js en Vercel con conexión a base de datos PostgreSQL en Railway; despliegues automáticos con Prisma migrate.",
+    buildProcess: [
+      {
+        title: "Modelado de datos",
+        description: "Diseñamos el esquema de base de datos para el dominio.",
+        details: [
+          "Modelado de entidades: Tickets, Usuarios, Equipos, Asignaciones.",
+          "Relaciones complejas: un ticket puede tener múltiples técnicos.",
+          "Estados del ticket: Nuevo → Asignado → En Progreso → Resuelto.",
+        ],
+      },
+      {
+        title: "API y autenticación",
+        description: "Construimos la capa de API con tipado de extremo a extremo.",
+        details: [
+          "Procedimientos tRPC para cada operación CRUD.",
+          "Middlewares de autenticación y verificación de permisos.",
+          "Validación de datos con Zod en cada procedimiento.",
+        ],
+      },
+      {
+        title: "Interfaz kanban",
+        description: "Implementamos el tablero interactivo con drag & drop.",
+        details: [
+          "Columnas de kanban con actualización optimista de estado.",
+          "Drag & drop para reasignación de tickets entre técnicos.",
+          "Filtros y búsqueda en tiempo real con debounce.",
+        ],
+      },
+      {
+        title: "Despliegue y monitoreo",
+        description: "Configuramos el despliegue continuo y monitoreo.",
+        details: [
+          "Despliegue en Vercel con CI/CD automático.",
+          "Prisma migrate para migraciones de base de datos.",
+          "Monitoreo de rendimiento con Vercel Analytics.",
+        ],
+      },
+    ],
   },
   {
     id: "dymm",
@@ -147,10 +228,49 @@ export const devCaseStudies: DevCaseStudy[] = [
     metrics: [
       { label: "Lighthouse Performance", value: "96" },
       { label: "Largest Contentful Paint", value: "1.0 s" },
-      { label: "Total Blocking Time", value: "80 ms" }, { label: "Cumulative Layout Shift", value: "0.01" },
+      { label: "Total Blocking Time", value: "80 ms" },
+      { label: "Cumulative Layout Shift", value: "0.01" },
     ],
     deployment:
       "Desplegado como paquete interno de autenticación junto con una app de demostración en Vercel; documentación automatizada con Storybook.",
+    buildProcess: [
+      {
+        title: "Configuración de OAuth",
+        description: "Integramos múltiples proveedores de autenticación.",
+        details: [
+          "Configuración de Google, GitHub y Twitter OAuth.",
+          "Implementación de magic link con envío de correo.",
+          "Manejo de tokens JWT y refresh tokens.",
+        ],
+      },
+      {
+        title: "Componentes de auth",
+        description: "Creamos un paquete reutilizable de componentes de login.",
+        details: [
+          "Auth layout compartido para login, registro y recuperación.",
+          "Componentes con ARIA labels y navegación por teclado.",
+          "Manejo de errores de OAuth con mensajes claros.",
+        ],
+      },
+      {
+        title: "Logs de auditoría",
+        description: "Implementamos seguimiento de intentos de acceso.",
+        details: [
+          "Registro de cada intento de login (exitoso o fallido).",
+          "Dashboard de logs con filtros por usuario y fecha.",
+          "Alertas para intentos sospechosos.",
+        ],
+      },
+      {
+        title: "Documentación y paquete",
+        description: "Documentamos el sistema para fácil integración.",
+        details: [
+          "Storybook para documentación de componentes.",
+          "Guía de integración paso a paso para nuevos proyectos.",
+          "npm package para distribución interna.",
+        ],
+      },
+    ],
   },
   {
     id: "hysion-web",
@@ -195,6 +315,44 @@ export const devCaseStudies: DevCaseStudy[] = [
     ],
     deployment:
       "Desplegado en Vercel con CI/CD automático desde GitHub; previews por rama y redirects configurados a nivel de edge.",
+    buildProcess: [
+      {
+        title: "Estructura del proyecto",
+        description: "Configuramos la arquitectura del sitio estático.",
+        details: [
+          "Inicialización con Vite + React + TypeScript.",
+          "Configuración de Tailwind CSS con tokens de marca.",
+          "Estructura de componentes por sección.",
+        ],
+      },
+      {
+        title: "Componentes de sección",
+        description: "Construimos cada sección como componente independiente.",
+        details: [
+          "Hero con animación de entrada y CTA principal.",
+          "Sección de servicios con iconografía y descripciones.",
+          "Grid de portfolio con hover interactivo.",
+        ],
+      },
+      {
+        title: "Animaciones de scroll",
+        description: "Implementamos animaciones fluidas con Framer Motion.",
+        details: [
+          "Animaciones whileInView para revelado progresivo.",
+          "Transiciones suaves entre secciones.",
+          "Microinteracciones en botones y tarjetas.",
+        ],
+      },
+      {
+        title: "SEO y rendimiento",
+        description: "Optimizamos para motores de búsqueda y velocidad.",
+        details: [
+          "Meta tags y Open Graph para redes sociales.",
+          "Lazy loading de imágenes y code splitting.",
+          "Optimización de fuentes con display swap.",
+        ],
+      },
+    ],
   },
   {
     id: "kypac-app",
@@ -239,6 +397,44 @@ export const devCaseStudies: DevCaseStudy[] = [
     ],
     deployment:
       "Frontend en Vercel con funciones serverless para el webhook de Stripe; Supabase gestiona catálogo y pedidos con políticas de fila por tienda.",
+    buildProcess: [
+      {
+        title: "Estado del carrito",
+        description: "Implementamos un carrito persistente y reactivo.",
+        details: [
+          "Zustand con middleware de persist para estado del carrito.",
+          "Sincronización entre pestañas con BroadcastChannel.",
+          "Manejo de cantidades, precios y descuentos en tiempo real.",
+        ],
+      },
+      {
+        title: "Integración Stripe",
+        description: "Conectamos la pasarela de pagos de Stripe.",
+        details: [
+          "Stripe Elements para inputs de tarjeta de crédito.",
+          "PaymentIntent para pagos seguros del lado del servidor.",
+          "Webhooks para confirmación de pagos y manejo de errores.",
+        ],
+      },
+      {
+        title: "Flujo de checkout",
+        description: "Construimos el proceso de compra completo.",
+        details: [
+          "Formulario de dirección con validación en tiempo real.",
+          "Resumen de pedido con desglose de costos.",
+          "Confirmación de pago con feedback visual inmediato.",
+        ],
+      },
+      {
+        title: "Seguimiento de pedidos",
+        description: "Implementamos el tracking post-pago.",
+        details: [
+          "Pantalla de estado del pedido: Procesando → Enviado → Entregado.",
+          "Notificaciones push para actualizaciones.",
+          "Historial de pedidos con reordenar.",
+        ],
+      },
+    ],
   },
   {
     id: "foodiego-app",
@@ -283,6 +479,44 @@ export const devCaseStudies: DevCaseStudy[] = [
     ],
     deployment:
       "App móvil desplegada vía EAS Build; backend de WebSocket en Railway y Supabase para datos, con webhooks de estado de pedido.",
+    buildProcess: [
+      {
+        title: "Configuración React Native",
+        description: "Preparamos el entorno para desarrollo móvil.",
+        details: [
+          "Inicialización con Expo + React Native + TypeScript.",
+          "Configuración de navegación con React Navigation.",
+          "Integración de Google Maps API para React Native.",
+        ],
+      },
+      {
+        title: "Servicio WebSocket",
+        description: "Implementamos la conexión en tiempo real para tracking.",
+        details: [
+          "Servicio WebSocket con reconexión exponencial.",
+          "Manejo de cola de mensajes para reconexiones.",
+          "Throttling de actualizaciones de ubicación.",
+        ],
+      },
+      {
+        title: "Integración de mapas",
+        description: "Construimos la experiencia de tracking visual.",
+        details: [
+          "Google Maps con marcador animado del repartidor.",
+          "Ruta optimizada y ETA en tiempo real.",
+          "Clusters de marcadores para múltiples repartidores.",
+        ],
+      },
+      {
+        title: "Despliegue y testing",
+        description: "Preparamos la app para producción.",
+        details: [
+          "Testing con Detox para flujos críticos.",
+          "Despliegue vía EAS Build para iOS y Android.",
+          "Monitoreo de crashes con Sentry.",
+        ],
+      },
+    ],
   },
   {
     id: "studionine-web",
@@ -327,6 +561,44 @@ export const devCaseStudies: DevCaseStudy[] = [
     ],
     deployment:
       "Desplegado en Vercel con ISR para el blog y previews por pull request; redirects y rewrites a nivel de edge.",
+    buildProcess: [
+      {
+        title: "Configuración Next.js",
+        description: "Preparamos el proyecto con App Router y MDX.",
+        details: [
+          "Inicialización con Next.js App Router.",
+          "Configuración de MDX para blog con frontmatter tipado.",
+          "Integración de Tailwind CSS y Framer Motion.",
+        ],
+      },
+      {
+        title: "Componentes editoriales",
+        description: "Creamos componentes con estilo editorial único.",
+        details: [
+          "Hero con tipografía grande y animaciones de entrada.",
+          "Tarjetas de proyecto con hover revelador.",
+          "Layout de caso de estudio a pantalla completa.",
+        ],
+      },
+      {
+        title: "Blog en MDX",
+        description: "Implementamos el blog con contenido enriquecido.",
+        details: [
+          "Componentes personalizados embebidos en MDX.",
+          " ISR para regeneración estática del blog.",
+          "Frontmatter tipado: título, fecha, autor, tags.",
+        ],
+      },
+      {
+        title: "Optimización y despliegue",
+        description: "Aseguramos rendimiento y despliegue continuo.",
+        details: [
+          "Optimización de imágenes con next/image.",
+          "Fuentes con display swap para LCP mínimo.",
+          "Despliegue en Vercel con ISR y previews por PR.",
+        ],
+      },
+    ],
   },
   {
     id: "agrotrack-web",
@@ -371,6 +643,44 @@ export const devCaseStudies: DevCaseStudy[] = [
     ],
     deployment:
       "Frontend en Vercel con edge streaming; gateway WebSocket de sensores en Railway y cache de series históricas en Redis.",
+    buildProcess: [
+      {
+        title: "Conexión de datos",
+        description: "Establecimos la comunicación con sensores IoT.",
+        details: [
+          "Servicio WebSocket con reconexión exponencial.",
+          "Parsers para diferentes tipos de sensores (humedad, temperatura, pH).",
+          "Cache de series históricas en Redis.",
+        ],
+      },
+      {
+        title: "Visualización D3.js",
+        description: "Construimos gráficos interactivos para datos complejos.",
+        details: [
+          "Gráficos de línea para tendencias temporales.",
+          "Mapas de calor para distribución espacial.",
+          "Componentes React encapsulados con D3 para re-render selectivo.",
+        ],
+      },
+      {
+        title: "Mapa interactivo",
+        description: "Implementamos la vista geolocalizada de sensores.",
+        details: [
+          "Overlay de mapa con clustering de sensores cercanos.",
+          "Filtros por tipo de cultivo y estado.",
+          "Tooltips con información detallada del sensor.",
+        ],
+      },
+      {
+        title: "Sistema de alertas",
+        description: "Creamos notificaciones en tiempo real.",
+        details: [
+          "Alertas push para anomalías críticas.",
+          "Dashboard de alertas históricas.",
+          "Umbrales configurables por tipo de sensor.",
+        ],
+      },
+    ],
   },
 ];
 
