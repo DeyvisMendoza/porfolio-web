@@ -123,7 +123,7 @@ export function SkillsSection() {
             transition={{ type: "spring", stiffness: 160, damping: 14, delay: 1.3 }}
           >
             <HiddenNote rotate={-4} color="bg-[#016634]" textColor="text-white">
-              Tambien se hablar con APIs. O sea, les mando mensajes y responden JSON.
+              También sé hablar con APIs. O sea, les mando mensajes y responden JSON.
             </HiddenNote>
           </motion.div>
         </div>

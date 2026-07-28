@@ -11,14 +11,14 @@ import { HiddenNote } from "../../../components/HiddenNote";
 import { useMode } from "../../context/ModeContext";
 
 const content = {
-  heading: "Gran eleccion! Te doy la bienvenida a mi lado creativo.",
+  heading: "Gran elección! Te doy la bienvenida a mi lado creativo.",
   body: [
-    "Hola, soy Deyvis Mendoza. Si elegiste este camino, es porque valoras la estetica, la usabilidad y la experiencia del usuario. Me dedico a transformar ideas complejas en interfaces intuitivas, limpias y visualmente atractivas.",
-    "Para mi, el diseno no es solo como se ve un producto, sino como funciona y como resuelve los problemas del usuario real.",
+    "Hola, soy Deyvis Mendoza. Si elegiste este camino, es porque valoras la estética, la usabilidad y la experiencia del usuario. Me dedico a transformar ideas complejas en interfaces intuitivas, limpias y visualmente atractivas.",
+    "Para mí, el diseño no es solo como se ve un producto, sino como funciona y como resuelve los problemas del usuario real.",
   ],
   bullets: [
-    "Mi enfoque en UI/UX: wireframes funcionales, prototipos de alta fidelidad y sistemas de diseno escalables.",
-    "Especialidad: flujos orientados a producto - desde e-commerce hasta sistemas de cientos de paginas.",
+    "Mi enfoque en UI/UX: wireframes funcionales, prototipos de alta fidelidad y sistemas de diseño escalables.",
+    "Especialidad: flujos orientados a producto - desde e-commerce hasta sistemas de cientos de páginas.",
     "Mis herramientas: Figma es mi lienzo principal para conceptualizar y prototipar.",
   ],
 };
@@ -114,7 +114,7 @@ export function HeroSection() {
         <div className="relative">
           <img
             src={imgLibreta}
-            alt="Bitacora de Proyectos"
+            alt="Bitácora de Proyectos"
             className="w-[520px] h-auto drop-shadow-[0_20px_60px_rgba(0,0,0,0.5)] pointer-events-auto select-none"
             style={{ maxWidth: "none" }}
           />
@@ -149,7 +149,7 @@ export function HeroSection() {
             className="absolute top-[110px] left-[80px] z-40"
           >
             <HiddenNote rotate={-8}>
-              He disenado flujos de mas de 200 pantallas sin perder la cordura (casi).
+              He diseñado flujos de más de 200 pantallas sin perder la cordura (casi).
             </HiddenNote>
           </motion.div>
         </div>
@@ -330,7 +330,7 @@ export function HeroSection() {
         <div className="relative" style={{ transform: "rotate(-5deg)" }}>
           <img
             src={imgLibreta}
-            alt="Bitacora de Proyectos"
+            alt="Bitácora de Proyectos"
             className="w-[300px] sm:w-[380px] h-auto drop-shadow-[0_20px_60px_rgba(0,0,0,0.4)]"
           />
           <span

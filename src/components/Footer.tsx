@@ -31,8 +31,8 @@ export function Footer() {
               style={{ fontFamily: "'IBM Plex Mono', monospace" }}
             >
               {isDev
-                ? "Construyendo software que conecta con las personas - desde la primera linea de codigo hasta el ultimo deploy."
-                : "Construyendo experiencias digitales que conectan con las personas - desde el primer pixel hasta el ultimo commit."}
+                ? "Construyendo software que conecta con las personas - desde la primera línea de código hasta el último deploy."
+                : "Construyendo experiencias digitales que conectan con las personas - desde el primer pixel hasta el último commit."}
             </p>
           </div>
 

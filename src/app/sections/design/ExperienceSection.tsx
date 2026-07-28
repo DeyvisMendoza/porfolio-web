@@ -101,7 +101,7 @@ export function ExperienceSection() {
           transition={{ type: "spring", stiffness: 160, damping: 14, delay: 0.8 }}
         >
           <HiddenNote rotate={2}>
-            Dato curioso: mis primeros wireframes se hicieron en papel y aun conservo algunos.
+            Dato curioso: mis primeros wireframes se hicieron en papel y aún conservo algunos.
           </HiddenNote>
         </motion.div>
       </div>

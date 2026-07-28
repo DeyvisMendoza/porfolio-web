@@ -1,11 +1,40 @@
 import imgTadiclick from "../../assets/tadiclick.svg";
 import imgVast from "../../assets/vast.svg";
 import imgDymm from "../../assets/dymm.svg";
-import imgHysionWeb from "../../assets/hysion-web.svg";
+import imgHysionWeb from "../../assets/case-studies/hysion-web/hysionportada.png";
 import imgKypacApp from "../../assets/kypac-app.svg";
 import imgFoodiegoApp from "../../assets/foodiego-app.svg";
 import imgStudioNineWeb from "../../assets/studionine-web.svg";
 import imgAgrotrackWeb from "../../assets/agrotrack-web.svg";
+import imgFlujoGeneral from "../../assets/case-studies/tadiclick/define/Flujo general.svg";
+import imgIdea1 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 1.svg";
+import imgIdea2 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 2.svg";
+import imgIdea3 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 3.svg";
+import imgIdea4 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 4.svg";
+import imgIdea5 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 5.svg";
+import imgIdea8 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 8.svg";
+import imgIdea9 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 42.svg";
+import imgIdea10 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 10.svg";
+import imgIdea11 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 11.svg";
+import imgIdea12 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 12.svg";
+import imgIdea13 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 13.svg";
+import imgIdea14 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 14.svg";
+import imgIdea52 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 52.svg";
+import imgIdea51 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 51.svg";
+import imgIdea49 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 49.svg";
+import imgIdea50 from "../../assets/case-studies/tadiclick/ideate/iPhone 16 Pro Max - 50.svg";
+import imgGeneral from "../../assets/case-studies/tadiclick/wireframes/vistageneral.png";
+import imgTadi from "../../assets/case-studies/tadiclick/wireframes/tadi.png";
+import captura1 from "../../assets/case-studies/tadiclick/ui-design/captura1.png";
+import captura2 from "../../assets/case-studies/tadiclick/ui-design/captura2.png";
+import captura3 from "../../assets/case-studies/tadiclick/ui-design/captura3.png";
+import registro from "../../assets/case-studies/tadiclick/prototype/registro.png";
+import actualizaciones from "../../assets/case-studies/tadiclick/prototype/actualizaciones.png";
+import desembolso from "../../assets/case-studies/tadiclick/prototype/desembolso.png";
+import backoffice from "../../assets/case-studies/tadiclick/prototype/backoffice.png";
+import tadiclick from "../../assets/case-studies/tadiclick/iteration/iPhone 16 Pro Max - 242.svg";
+import pfinales from "../../assets/case-studies/tadiclick/iteration/pfinales.png";
+import phistorial from "../../assets/case-studies/tadiclick/iteration/phistorial.png";
 
 export interface DesignProcessPhase {
   id: string;
@@ -195,16 +224,16 @@ export const designCaseStudies: DesignCaseStudy[] = [
       "Redujimos la tasa de abandono en el flujo de solicitud un 38 % y aumentamos la confianza medida en pruebas de usabilidad, con 9 de cada 10 usuarios identificando correctamente el costo total.",
     mockup: imgTadiclick,
     processPhases: createProcessPhases({
-      "discovery": [imgTadiclick],
-      "ux-research": [],
-      "define": [],
-      "ideate": [],
-      "ia": [],
-      "wireframes": [],
-      "ui-design": [imgTadiclick],
-      "prototype": [imgTadiclick],
+      "discovery": ["https://play-lh.googleusercontent.com/DLTZl3e0MJFy2wEvZlYEyRmvjLG42Lj0hGBppjOUWhYetpEkItHIx2PHXAwtRudrGh5fftROq62qgrOpm-t4", "https://play-lh.googleusercontent.com/JtnfveCv3e2_ZJyI0RWvIO1U6KYQGvdXx40hUnS7e7GN1kkM2Jj3epJtufDQpOlCbQLBzQcO7A4e4PIbiYKbSco", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4LCHo8SWaxniS73Ac0iNpH-dxsBefGbk4itOmjazO3T0potpcWN_8UME&s=10"],
+      "ux-research": ["https://i.pinimg.com/1200x/fb/e7/a4/fbe7a4e9aef20ce9a8ae920ab8f5348d.jpg", "https://i.pinimg.com/736x/21/92/6f/21926f94ea0215fe188061fe0aeff38f.jpg", "https://i.pinimg.com/1200x/50/74/d7/5074d7d6058ddcec08de0c2fba6131a2.jpg"],
+      "define": [imgFlujoGeneral],
+      "ideate": [imgIdea1, imgIdea2, imgIdea3, imgIdea4, imgIdea5, imgIdea8, imgIdea9, imgIdea10, imgIdea11, imgIdea12, imgIdea13, imgIdea14,],
+      "ia": [ imgIdea52, imgIdea51, imgIdea49, imgIdea50],
+      "wireframes": [imgGeneral, imgTadi],
+      "ui-design": [captura1, captura2, captura3],
+      "prototype": [registro, actualizaciones, desembolso, backoffice],
       "testing": [],
-      "iteration": [],
+      "iteration": [tadiclick, pfinales, phistorial],
       "handoff": [],
       "followup": [],
     }),

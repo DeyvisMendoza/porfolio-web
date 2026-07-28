@@ -4,41 +4,38 @@ import { Link } from "react-router-dom";
 import imgTadiclick from "../../../assets/tadiclick.svg";
 import imgVast from "../../../assets/vast.svg";
 import imgDymm from "../../../assets/dymm.svg";
-import imgHysionWeb from "../../../assets/hysion-web.svg";
 import imgKypacApp from "../../../assets/kypac.png";
-import imgFoodiegoApp from "../../../assets/foodiego-app.svg";
-import imgStudioNineWeb from "../../../assets/studionine-web.svg";
-import imgAgrotrackWeb from "../../../assets/agrotrack-web.svg";
 import imgFigmaBarra from "../../../assets/figmabarra.svg";
 import { HiddenNote } from "../../../components/HiddenNote";
 import { ProjectCarousel } from "../../../components/ProjectCarousel";
+import imgHysionWeb from "../../../assets/hysion.png";
 
 const projects = [
   {
     id: "tadiclick",
     img: imgTadiclick,
     title: "Tadiclick",
-    subtitle: "App de prestamos y finanzas personales",
-    role: "Diseno UI/UX + Frontend",
-    text: "Aplicacion movil para gestionar prestamos personales, pagos, historial de desembolsos y recordatorios. Disené el sistema de diseno completo, los flujos de solicitud de credito y colabore en la interfaz con React.",
+    subtitle: "App de préstamos y finanzas personales",
+    role: "Diseño UI/UX + Frontend",
+    text: "Aplicación móvil para gestionar préstamos personales, pagos, historial de desembolsos y recordatorios. Diseñé el sistema de diseño completo, los flujos de solicitud de crédito y colabore en la interfaz con React.",
     tags: ["Figma", "React", "TypeScript", "Supabase"],
   },
   {
     id: "vast",
     img: imgVast,
     title: "VAST",
-    subtitle: "Plataforma de solicitud de servicios tecnicos",
+    subtitle: "Plataforma de solicitud de servicios técnicos",
     role: "Product Designer",
-    text: "SaaS para empresas que necesitan solicitar mantenimiento correctivo y preventivo de equipos. Creé los flujos de creacion de tickets, asignacion de tecnicos, seguimiento de estados y dashboard de métricas.",
+    text: "SaaS para empresas que necesitan solicitar mantenimiento correctivo y preventivo de equipos. Creé los flujos de creación de tickets, asignación de técnicos, seguimiento de estados y dashboard de métricas.",
     tags: ["Figma", "Prototipado", "Design System", "UX Research"],
   },
   {
     id: "Dymm",
     img: imgDymm,
     title: "Dymm",
-    subtitle: "Sistema de autenticacion multiplataforma",
+    subtitle: "Sistema de autenticación multiplataforma",
     role: "UI/UX + Fullstack",
-    text: "Plataforma de autenticacion unificada con login social, verificacion de correo y recuperacion de contrasena. Trabaje en la experiencia de registro, el panel de administracion y la integracion con APIs de terceros.",
+    text: "Plataforma de autenticación unificada con login social, verificación de correo y recuperación de contraseña. Trabajé en la experiencia de registro, el panel de administración y la integración con APIs de terceros.",
     tags: ["Next.js", "Supabase", "Figma", "OAuth"],
   },
   {
@@ -46,8 +43,8 @@ const projects = [
     img: imgHysionWeb,
     title: "Hysion Web",
     subtitle: "Sitio web y landing page de agencia",
-    role: "Diseno UI/UX + Frontend",
-    text: "Landing page de agencia con portfolio, servicios y formulario de contacto. Disené el layout responsivo, la identidad visual y colabore en el desarrollo frontend con animaciones de scroll.",
+    role: "Diseño UI/UX + Frontend",
+    text: "Landing page de agencia con portfolio, servicios y formulario de contacto. Diseñé el layout responsivo, la identidad visual y colabore en el desarrollo frontend con animaciones de scroll.",
     tags: ["Figma", "React", "Tailwind CSS", "Framer Motion"],
   },
   {
@@ -58,33 +55,6 @@ const projects = [
     role: "Diseño UI/UX + Frontend",
     text: "App móvil de e-commerce con pasarela de pagos integrada, carrito de compras y seguimiento de pedidos en tiempo real. Diseñé el flujo completo de compra y el checkout.",
     tags: ["Figma", "React", "Stripe", "Supabase"],
-  },
-  {
-    id: "foodiego-app",
-    img: imgFoodiegoApp,
-    title: "FoodieGo",
-    subtitle: "Delivery de comida a domicilio",
-    role: "UI/UX Designer",
-    text: "App de delivery con geolocalización, menús dinámicos y sistema de reseñas. Diseñé la experiencia de pedido, seguimiento del repartidor y calificación.",
-    tags: ["Figma", "Prototipado", "Google Maps API", "UX Research"],
-  },
-  {
-    id: "studionine-web",
-    img: imgStudioNineWeb,
-    title: "StudioNine",
-    subtitle: "Portfolio de estudio creativo",
-    role: "Diseño UI/UX + Frontend",
-    text: "Sitio web de estudio creativo con portfolio interactivo, servicios y blog. Diseñé el layout con animaciones de scroll y un sistema de casos de estudio visuales.",
-    tags: ["Figma", "React", "Tailwind CSS", "Framer Motion"],
-  },
-  {
-    id: "agrotrack-web",
-    img: imgAgrotrackWeb,
-    title: "AgroTrack",
-    subtitle: "Plataforma de monitoreo agrícola",
-    role: "Product Designer",
-    text: "Dashboard web para monitoreo de cultivos con sensores IoT, mapas interactivos y reportes de productividad. Diseñé el sistema de visualización de datos.",
-    tags: ["Figma", "Design System", "Data Viz", "UX Research"],
   },
 ];
 
@@ -124,7 +94,7 @@ function FlipCard({
   return (
     <Link
       to={`/projects/${project.id}`}
-      className="group perspective-[1000px] w-[260px] sm:w-[280px] h-full min-h-0 block"
+      className="group perspective-[1000px] w-[380px] sm:w-[480px] h-[300px] sm:h-[340px] flex-shrink-0 block"
       data-project-id={project.id}
       onClick={(e) => {
         if (flipped) {
@@ -149,24 +119,24 @@ function FlipCard({
           style={{ backfaceVisibility: "hidden" }}
         >
           <span
-            className="inline-block mb-3 bg-[#0d99ff] text-white text-[11px] px-2 py-0.5 rounded-sm select-none"
+            className="inline-block mb-2 bg-[#0d99ff] text-white text-[11px] px-2 py-0.5 rounded-sm select-none"
             style={{ fontFamily: "'Inter', sans-serif", fontWeight: 600 }}
           >
             {project.id}
           </span>
           <div
-            className="overflow-hidden rounded-[32px] border-[4px] border-[#111] bg-transparent transition-transform duration-300 hover:scale-[1.04] hover:-translate-y-2 flex-1 min-h-0"
+            className="overflow-hidden rounded-[24px] border-[3px] border-[#111] bg-white/[0.03] transition-transform duration-300 hover:scale-[1.04] hover:-translate-y-2 h-[200px] sm:h-[240px] flex-shrink-0"
             style={{ filter: "drop-shadow(0 32px 64px rgba(0,0,0,0.12))" }}
           >
             <img
               src={project.img}
               alt={`Mockup de ${project.title}`}
-              className="w-full h-full object-cover block pointer-events-none"
+              className="w-full h-full object-cover object-center block pointer-events-none"
               loading="lazy"
             />
           </div>
           <p
-            className="text-white/50 text-[13px] text-center mt-3 mx-auto max-w-[220px] flex-shrink-0"
+            className="text-white/50 text-[12px] text-center mt-2 mx-auto max-w-[220px] flex-shrink-0"
             style={{ fontFamily: "'Inter', sans-serif" }}
           >
             {project.subtitle}
@@ -227,9 +197,7 @@ function FlipCard({
             ))}
           </div>
           <div className="mt-4">
-            <span
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#0a0a0a] text-[12px] hover:bg-white/90 transition-colors"
-            >
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#0a0a0a] text-[12px] hover:bg-white/90 transition-colors">
               Leer más
               <svg
                 viewBox="0 0 24 24"
@@ -384,8 +352,8 @@ export function ProjectsSection() {
       </motion.div>
 
       {/* WORKSPACE */}
-      <div className="relative z-10 w-full max-w-[1280px] mx-auto px-5 sm:px-10">
-        <div className="relative flex justify-center mb-12">
+      <div className="relative z-10 w-full px-5 sm:px-10">
+        <div className="relative flex justify-center mb-6">
           <motion.h2
             className="text-white text-center text-[36px] sm:text-[48px]"
             style={{
@@ -412,18 +380,12 @@ export function ProjectsSection() {
             }}
           >
             <HiddenNote rotate={6} color="bg-[#0d99ff]" textColor="text-white">
-              Estos son mis favoritos. Tengo mas escondidos en GitHub.
+              Estos son mis favoritos. Tengo más escondidos en GitHub.
             </HiddenNote>
           </motion.div>
         </div>
 
-        <ProjectCarousel
-          theme="design"
-          maxWidth="max-w-[1280px]"
-          itemWidth="w-[260px] sm:w-[280px]"
-
-          // itemHeight="h-[520px] sm:h-[560px]"
-        >
+        <ProjectCarousel theme="design" itemWidth="w-[380px] sm:w-[480px]">
           {projects.map((p, i) => (
             <motion.div
               key={p.id}

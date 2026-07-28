@@ -1,21 +1,15 @@
 import { motion } from "framer-motion";
 import { EXPERIENCE_ITEMS } from "../../../shared/constants/experience";
 
-function formatDuration(text: string) {
-  // Intenta extraer años de los bullets de experiencia
-  const match = text.match(/(\d{4})\s*-\s*(\d{4}|presente|actual)/i);
-  if (!match) return null;
-  const start = parseInt(match[1], 10);
-  const endStr = match[2].toLowerCase();
-  const end = endStr === "presente" || endStr === "actual" ? new Date().getFullYear() : parseInt(endStr, 10);
-  const years = end - start;
-  return { start, end, years };
+function getDuration(startDate: string, endDate: string) {
+  const start = parseInt(startDate, 10);
+  const end = endDate === "presente" || endDate === "actual" ? new Date().getFullYear() : parseInt(endDate, 10);
+  return end - start;
 }
 
 export function ExperienceSection() {
   const totalYears = EXPERIENCE_ITEMS.reduce((acc, item) => {
-    const dur = formatDuration(item.items[0] || "");
-    return acc + (dur?.years || 0);
+    return acc + getDuration(item.startDate, item.endDate);
   }, 0);
 
   return (
@@ -62,7 +56,6 @@ export function ExperienceSection() {
 
         <div className="border-t border-white/10">
           {EXPERIENCE_ITEMS.map((card, i) => {
-            const dur = formatDuration(card.items[0] || "");
             return (
               <motion.div
                 key={i}
@@ -73,14 +66,12 @@ export function ExperienceSection() {
                 transition={{ duration: 0.6, delay: 0.2 + i * 0.12, ease: "easeOut" }}
               >
                 <div className="md:col-span-2">
-                  {dur && (
-                    <p
-                      className="text-white/40 text-[13px]"
-                      style={{ fontFamily: "'IBM Plex Mono', monospace" }}
-                    >
-                      {dur.start} - {dur.end}
-                    </p>
-                  )}
+                  <p
+                    className="text-white/40 text-[13px]"
+                    style={{ fontFamily: "'IBM Plex Mono', monospace" }}
+                  >
+                    {card.startDate} - {card.endDate === "presente" ? "Actualidad" : card.endDate}
+                  </p>
                 </div>
                 <div className="md:col-span-3">
                   <h3
@@ -95,7 +86,7 @@ export function ExperienceSection() {
                     className="text-white/60 text-[14px] leading-relaxed"
                     style={{ fontFamily: "'Inter', sans-serif" }}
                   >
-                    {card.items.slice(1).join(" ")}
+                    {card.items.join(" ")}
                   </p>
                   <p
                     className="text-white/30 text-[12px] mt-2"

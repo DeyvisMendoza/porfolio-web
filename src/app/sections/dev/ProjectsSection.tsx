@@ -3,12 +3,9 @@ import { Link } from "react-router-dom";
 import imgTadiclick from "../../../assets/tadiclick.svg";
 import imgVast from "../../../assets/vast.svg";
 import imgDymm from "../../../assets/dymm.svg";
-import imgHysionWeb from "../../../assets/hysion-web.svg";
-import imgKypacApp from "../../../assets/kypac-app.svg";
-import imgFoodiegoApp from "../../../assets/foodiego-app.svg";
-import imgStudioNineWeb from "../../../assets/studionine-web.svg";
-import imgAgrotrackWeb from "../../../assets/agrotrack-web.svg";
+import imgKypacApp from "../../../assets/kypac.png";
 import { ProjectCarousel } from "../../../components/ProjectCarousel";
+import imgHysionWeb from "../../../assets/hysion.png";
 
 const projects = [
   {
@@ -40,24 +37,6 @@ const projects = [
     img: imgKypacApp,
     title: "Kypac — E-commerce y pagos",
     desc: "App de e-commerce con Stripe, carrito en tiempo real y seguimiento de pedidos. Frontend en React con estado global para el carrito.",
-  },
-  {
-    id: "foodiego-app",
-    img: imgFoodiegoApp,
-    title: "FoodieGo — Delivery de comida",
-    desc: "App de delivery con integración de Google Maps, menús dinámicos y reseñas. Construí el tracking del repartidor en tiempo real.",
-  },
-  {
-    id: "studionine-web",
-    img: imgStudioNineWeb,
-    title: "StudioNine — Portfolio creativo",
-    desc: "Sitio web de estudio con animaciones de scroll y blog en MDX. Frontend en React con Tailwind y Framer Motion.",
-  },
-  {
-    id: "agrotrack-web",
-    img: imgAgrotrackWeb,
-    title: "AgroTrack — Monitoreo agrícola",
-    desc: "Dashboard de monitoreo con gráficos en tiempo real y mapas interactivos. Frontend en Next.js con WebSocket para datos de sensores.",
   },
 ];
 
@@ -95,18 +74,11 @@ export function ProjectsSection() {
           </motion.p>
         </div>
 
-        <ProjectCarousel
-          theme="dev"
-          maxWidth="max-w-[1200px]"
-          itemWidth="w-[300px] sm:w-[340px]"
-        >
+        <ProjectCarousel theme="dev" itemWidth="w-[380px] sm:w-[480px]">
           {projects.map((project, i) => (
-            <Link
-              to={`/projects/${project.id}`}
-              key={project.id}
-            >
+            <Link to={`/projects/${project.id}`} key={project.id}>
               <motion.div
-                className="group relative rounded-[28px] overflow-hidden border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors w-[300px] sm:w-[340px]"
+                className="group relative rounded-[24px] overflow-hidden border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] transition-colors w-[380px] sm:w-[480px] h-[300px] sm:h-[340px] flex-shrink-0"
                 initial={
                   i % 3 === 0
                     ? { opacity: 0, x: -60, y: 40, rotate: -2 }
@@ -118,18 +90,23 @@ export function ProjectsSection() {
                 viewport={{ once: true, amount: 0.3 }}
                 transition={
                   i % 3 === 1
-                    ? { type: "spring", stiffness: 160, damping: 14, delay: 0.15 }
+                    ? {
+                        type: "spring",
+                        stiffness: 160,
+                        damping: 14,
+                        delay: 0.15,
+                      }
                     : { duration: 0.7, delay: 0.1 + i * 0.1, ease: "easeOut" }
                 }
               >
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className="h-[180px] sm:h-[200px] overflow-hidden">
                   <img
                     src={project.img}
                     alt={project.title}
-                    className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                    className="w-full h-full object-cover object-center opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-1">
                   <h3
                     className="text-white text-[16px] mb-2"
                     style={{
@@ -140,30 +117,11 @@ export function ProjectsSection() {
                     {project.title}
                   </h3>
                   <p
-                    className="text-white/40 text-[13px] leading-relaxed mb-5"
+                    className="text-white/40 text-[13px] leading-relaxed mb-5 flex-1"
                     style={{ fontFamily: "'Inter', sans-serif" }}
                   >
                     {project.desc}
                   </p>
-                  <span
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#0a0a0a] text-[12px] hover:bg-white/90 transition-colors w-fit"
-                    style={{
-                      fontFamily: "'IBM Plex Mono', monospace",
-                      fontWeight: 600,
-                    }}
-                  >
-                    Leer más
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="w-3.5 h-3.5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                    >
-                      <path d="M5 12h14M12 5l7 7-7 7" />
-                    </svg>
-                  </span>
                 </div>
               </motion.div>
             </Link>

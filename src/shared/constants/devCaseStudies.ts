@@ -31,79 +31,79 @@ export const devCaseStudies: DevCaseStudy[] = [
     title: "Tadiclick — App de préstamos y finanzas",
     liveUrl: "#",
     repoUrl: "#",
-    stack: ["React", "TypeScript", "Tailwind CSS", "Supabase", "Framer Motion"],
+    stack: ["Figma Make", "bolt.new", "Stitch", "Frontend Code"],
     challenge:
-      "Construir una interfaz móvil fluida donde el usuario avance por un flujo de solicitud de crédito sin perder el contexto de cuánto debe y cuándo paga, manteniendo la accesibilidad y el rendimiento en dispositivos de gama media.",
+      "Crear un backoffice funcional donde el cliente pudiera configurar la app de préstamos, utilizando herramientas de IA para convertir los diseños en código de forma eficiente.",
     figmaToCode: {
       mockup: imgTadiclick,
       caption:
-        "Traduje el design system de Figma a componentes React reutilizables, conservando microinteracciones y tokens visuales.",
+        "Utilicé herramientas de IA como Figma Make para convertir los diseños en código funcional del backoffice.",
       points: [
-        "Tokens de color y tipografía centralizados en Tailwind config.",
-        "Componentes de formulario controlados con validación en tiempo real.",
-        "Animaciones de transición entre pasos con Framer Motion.",
+        "Evalué múltiples herramientas de IA: bolt.new, Figma Make y Stitch.",
+        "Figma Make resultó ser la mejor opción para generar código limpio.",
+        "El backoffice permitía al cliente configurar opciones de la app.",
       ],
     },
     architecture: [
       {
-        title: "Estado y datos",
+        title: "Herramientas de IA evaluadas",
         desc:
-          "Supabase como backend-for-frontend: auth, base de datos PostgreSQL y edge functions para cálculos de préstamo en tiempo real.",
+          "Probé bolt.new, Figma Make y Stitch para convertir diseños en código. Cada una tenía fortalezas diferentes.",
       },
       {
-        title: "Componentización",
+        title: "Figma Make como solución",
         desc:
-          "Separación entre tarjetas de resumen, timeline de pagos y formularios de solicitud, cada uno testeable de forma aislada.",
+          "Figma Make generó el mejor código limpio y funcional para el backoffice, facilitando el trabajo del equipo de desarrollo.",
       },
       {
-        title: "Rendimiento",
+        title: "Entrega al equipo",
         desc:
-          "Lazy loading de rutas secundarias, memoización de cálculos financieros y optimización de imágenes para móvil.",
+          "Entregué el link de Figma organizado para desarrolladores y el archivo ZIP con el código del backoffice generado por IA.",
       },
     ],
     metrics: [
-      { label: "Lighthouse Performance", value: "94" },
-      { label: "Largest Contentful Paint", value: "1.2 s" },
-      { label: "Total Blocking Time", value: "120 ms" },
-      { label: "Cumulative Layout Shift", value: "0.02" },
+      { label: "Herramientas evaluadas", value: "3" },
+      { label: "Backoffice generado", value: "100%" },
+      { label: "Tiempo de desarrollo", value: "Reducción significativa" },
+      { label: "Código entregado", value: "Funcional" },
     ],
     deployment:
-      "Frontend desplegado en Vercel con CI/CD automático y previews por pull request. Supabase maneja migraciones y políticas de seguridad a nivel de fila.",
+      "Backoffice publicado en link temporal de Figma para revisión del cliente. Código entregado en archivo ZIP al equipo de desarrollo.",
     buildProcess: [
       {
-        title: "Configuración del proyecto",
-        description: "Preparamos el entorno y las herramientas de desarrollo.",
+        title: "Evaluación de herramientas",
+        description: "Investigué y probé diferentes herramientas de IA para convertir diseños en código.",
         details: [
-          "Inicialización con Vite + React + TypeScript.",
-          "Configuración de Tailwind CSS con tokens de diseño personalizados.",
-          "Instalación de dependencias: Framer Motion, Supabase, React Router.",
+          "Probé bolt.new: generaba código rápido pero con limitaciones.",
+          "Probé Stitch: buena calidad pero menos flexible.",
+          "Probé Figma Make: la mejor opción para este caso.",
         ],
       },
       {
-        title: "Componentización y diseño",
-        description: "Tradujimos el design system a componentes React.",
+        title: "Generación del backoffice",
+        description: "Utilicé Figma Make para crear el backoffice funcional.",
         details: [
-          "Tokens de color y tipografía centralizados en tailwind.config.ts.",
-          "Componentes de formulario controlados con validación en tiempo real.",
-          "Tarjetas de resumen con desglose de préstamo y timeline de pagos.",
+          "Figma Make generó código limpio y organizado.",
+          "El backoffice incluía configuración de opciones de la app.",
+          "Todo funcionaba sin necesidad de backend (simulaciones).",
         ],
       },
       {
-        title: "Integración de backend",
-        description: "Conectamos la interfaz con Supabase para datos y auth.",
+        title: "Publicación y revisión",
+        description: "Publiqué el backoffice en un link temporal para que el cliente lo revisara.",
         details: [
-          "Autenticación con Supabase Auth y manejo de sesiones.",
-          "Edge functions para cálculos de préstamo en tiempo real.",
-          "Políticas de seguridad a nivel de fila para datos financieros.",
+          "Link temporal de Figma para acceso del cliente.",
+          "Presentación explicando cómo funcionaba el sistema.",
+          "El cliente probó y validó las funcionalidades.",
         ],
       },
       {
-        title: "Optimización y despliegue",
-        description: "Aseguramos rendimiento y despliegue continuo.",
+        title: "Entrega al equipo de desarrollo",
+        description: "Entregué todo organizado para que el equipo pudiera continuar.",
         details: [
-          "Lazy loading de rutas secundarias para carga inicial rápida.",
-          "Memoización de cálculos financieros con useMemo.",
-          "Despliegue en Vercel con CI/CD automático y previews por PR.",
+          "Link de Figma organizado con todas las pantallas.",
+          "Archivo ZIP con el código del backoffice.",
+          "Documentación de cómo funcionaba el sistema.",
         ],
       },
     ],

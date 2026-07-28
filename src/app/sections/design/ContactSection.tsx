@@ -112,7 +112,7 @@ export function ContactSection() {
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
           >
-            Estoy disponible para proyectos de diseno, desarrollo o ambos. Escribeme y hablamos.
+            Estoy disponible para proyectos de diseño, desarrollo o ambos. Escríbeme y hablamos.
           </motion.p>
           <motion.div
             className="mt-6 inline-flex items-center gap-2 border border-white/25 bg-white/10 rounded-full px-5 py-2"
@@ -213,7 +213,7 @@ export function ContactSection() {
           transition={{ type: "spring", stiffness: 160, damping: 14, delay: 0.7 }}
         >
           <HiddenNote rotate={-5} color="bg-white" textColor="text-[#016634]">
-            Los datos se copian al portapapeles al hacer click. Practico, no?
+            Los datos se copian al portapapeles al hacer click. Práctico, no?
           </HiddenNote>
         </motion.div>
       </div>
