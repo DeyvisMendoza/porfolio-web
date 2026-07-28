@@ -116,7 +116,7 @@ function DesignDetailView({ projectId }: { projectId: string }) {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="rounded-[32px] overflow-hidden border-4 border-[#016634]/20 max-w-[600px] mx-auto bg-[#016634]/5"
+          className="rounded-[32px] overflow-hidden border-4 border-[#016634]/20 max-w-[320px] mx-auto bg-[#016634]/5"
         >
           <img
             src={study.mockup}
@@ -397,7 +397,7 @@ function DevDetailView({ projectId }: { projectId: string }) {
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="rounded-[32px] overflow-hidden border border-white/10 max-w-[600px] mx-auto bg-white/[0.02]"
+          className="rounded-[32px] overflow-hidden border border-white/10 max-w-[320px] mx-auto bg-white/[0.02]"
         >
           <img
             src={study.figmaToCode.mockup}
