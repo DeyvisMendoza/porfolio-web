@@ -55,6 +55,7 @@ export interface DesignCaseStudy {
   outcome: string;
   mockup: string;
   processPhases: DesignProcessPhase[];
+  links?: { label: string; url: string }[];
 }
 
 const defaultPhases: Omit<DesignProcessPhase, "images">[] = [

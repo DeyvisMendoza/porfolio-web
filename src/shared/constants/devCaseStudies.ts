@@ -23,6 +23,7 @@ export interface DevCaseStudy {
     description: string;
     details: string[];
   }[];
+  links?: { label: string; url: string }[];
 }
 
 export const devCaseStudies: DevCaseStudy[] = [
